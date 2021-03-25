@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="refresh" content="60">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Stats</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            background-color: rgb(43, 41, 41);
+            color: white;
+            bottom: 0;
+            margin-bottom: -1rem;
+            padding: 0;
+        }
+
+        td>small {
+            font-weight: 600;
+            margin-left: 5px;
+            font-size: 0.75rem;
+        }
+
+        .confirmed {
+            color: red;
+        }
+
+        .deceased {
+            color: grey;
+        }
+
+        .recovered {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Covid Details - India</h3>
+        <table class="table-bordered table main_table text-center">
+            <tr class="thead-dark">
+                <th>State Name</th>
+                <th>Confirmed</th>
+                <th>Deceased</th>
+                <th>Recovered</th>
+                <th>Tested</th>
+                <th>Vaccinated</th>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <small class="footer"></small>
+    </footer>
+</body>
+
+</html>
