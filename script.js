@@ -20,27 +20,38 @@ $(document).ready(function () {
 
                 // Today's Data
                 if (data[item].delta) {
-                    var today_confirmed = data[item]['delta']['confirmed'];
-                    var today_deceased = data[item]['delta']['deceased'];
-                    var today_recovered = data[item]['delta']['recovered'];
-
+                    var today_confirmed = data[item]['delta']['confirmed'] == undefined ? 0 : data[item]['delta']['confirmed'];
+                    var today_deceased = data[item]['delta']['deceased'] == undefined ? 0 : data[item]['delta']['deceased'];
+                    var today_recovered = data[item]['delta']['recovered'] == undefined ? 0 : data[item]['delta']['recovered'];
+                    var today_vaccinated = data[item]['delta']['vaccinated'] == undefined ? 0 : data[item]['delta']['vaccinated'];
                     if (item != 'TT') {
-                        var row = '<tr><td><a href="#">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '</td></tr>';
+                        var row = '<tr><td><a href="#">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                     }
-                    $('.main_table').append(row);
-                    console.log(item, data[item]['delta']);
+
+                    //console.log(item, data[item]['delta']);
                 }
+                else if (data[item].delta7) {
+                    var today_confirmed = data[item]['delta7']['confirmed'] == undefined ? 0 : data[item]['delta7']['confirmed'];
+                    var today_deceased = data[item]['delta7']['deceased'] == undefined ? 0 : data[item]['delta7']['deceased'];
+                    var today_recovered = data[item]['delta7']['recovered'] == undefined ? 0 : data[item]['delta7']['recovered'];
+                    var today_vaccinated = data[item]['delta7']['vaccinated'] == undefined ? 0 : data[item]['delta7']['vaccinated'];
+
+                    var row = '<tr><td><a href="#">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+                }
+                $('.main_table').append(row);
+                console.log(item, data[item]);
 
             })
             // Appending the Total figures at the last
             var today_confirmed = data['TT']['delta']['confirmed'];
             var today_deceased = data['TT']['delta']['deceased'];
             var today_recovered = data['TT']['delta']['recovered'];
-            var row = '<tr style="background-color: pink; font-weight: 700;"><td><a href="#">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'] + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + data['TT']['total']['deceased'] + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'] + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'] + '</td><td>' + data['TT']['total']['vaccinated'] + '</td></tr>';
+            var today_vaccinated = data['TT']['delta7']['vaccinated'];
+            var row = '<tr style="background-color: pink; font-weight: 700;"><td><a href="#">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'] + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + data['TT']['total']['deceased'] + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'] + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'] + '</td><td>' + data['TT']['total']['vaccinated'] + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
 
         });
-        $('.footer').text(url);
+        $('.footer').text('Source: ' + url);
     }
     fetch_data();
 
