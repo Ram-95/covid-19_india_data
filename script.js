@@ -12,6 +12,11 @@ var state_show_code;
 $(document).ready(function () {
     function fetch_data() {
         $.getJSON(url, function (data) {
+            var updated_date = data['TT']['meta']['last_updated'];
+            // Adding the updated date
+            x = updated_date.split('T');
+            $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
+            //console.log(updated_date);
             $.each(data, function (item) {
                 var total = data[item]['total'];
                 // Total Cases
@@ -46,6 +51,7 @@ $(document).ready(function () {
 
             })
             // Appending the Total figures at the last
+
             var today_confirmed = data['TT']['delta']['confirmed'].toLocaleString();
             var today_deceased = data['TT']['delta']['deceased'].toLocaleString();
             var today_recovered = data['TT']['delta']['recovered'].toLocaleString();
@@ -64,7 +70,7 @@ $(document).ready(function () {
         $('th:first').text('District Name');
         //alert(state_id);
         $.getJSON(url, function (data) {
-            console.log(data[state_id]['districts']);
+            //console.log(data[state_id]['districts']);
             var district = data[state_id]['districts'];
 
             /* Total Data of State */

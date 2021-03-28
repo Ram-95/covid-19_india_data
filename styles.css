@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Della+Respira&family=Kanit&family=Prompt&display=swap');
-
 * {
     box-sizing: border-box;
     padding: 0;
@@ -56,4 +55,8 @@ td>small {
 .state_name {
     cursor: pointer;
     color: rgb(0, 47, 255) !important;
+}
+
+.updated_date {
+    color: green;
 }
