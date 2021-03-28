@@ -39,7 +39,7 @@ $(document).ready(function () {
                     var today_recovered = data[item]['delta7']['recovered'] == undefined ? 0 : data[item]['delta7']['recovered'].toLocaleString();
                     var today_vaccinated = data[item]['delta7']['vaccinated'] == undefined ? 0 : data[item]['delta7']['vaccinated'].toLocaleString();
 
-                    var row = '<tr><td><a class="state_name" href="#" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+                    var row = '<tr><td><a class="state_name" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                 }
                 $('.main_table').append(row);
                 //console.log(item, data[item]);
@@ -64,9 +64,9 @@ $(document).ready(function () {
         $('th:first').text('District Name');
         //alert(state_id);
         $.getJSON(url, function (data) {
-            //console.log(data[state_id]['districts']);
+            console.log(data[state_id]['districts']);
             var district = data[state_id]['districts'];
-            
+
             /* Total Data of State */
             var state = data[state_id];
             var state_total = state['total']['confirmed'].toLocaleString();
@@ -78,13 +78,27 @@ $(document).ready(function () {
             /* Fetching the District data of the State. */
             $.each(district, function (item) {
                 var dist = district[item];
-                //console.log(item, dist['total']);
+
+                console.log(item, dist['delta7']);
                 var dist_confirmed = dist['total']['confirmed'] == undefined ? 0 : dist['total']['confirmed'].toLocaleString();
                 var dist_deceased = dist['total']['deceased'] == undefined ? 0 : dist['total']['deceased'].toLocaleString();
                 var dist_recovered = dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'].toLocaleString();
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString();
 
-                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + '</td><td>' + dist_deceased + '</td><td>' + dist_recovered + '</td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
+                // Today's data of districts
+                var today_dist_data = dist['delta7'] == undefined ? 0 : dist['delta7'];
+                if (today_dist_data != 0) {
+                    var today_dist_confirmed = today_dist_data['confirmed'] == undefined ? 0 : today_dist_data['confirmed'].toLocaleString();
+                    var today_dist_deceased = today_dist_data['deceased'] == undefined ? 0 : today_dist_data['deceased'].toLocaleString();
+                    var today_dist_recovered = today_dist_data['recovered'] == undefined ? 0 : today_dist_data['recovered'].toLocaleString();
+                }
+                else {
+                    var today_dist_confirmed = 0;
+                    var today_dist_deceased = 0;
+                    var today_dist_recovered = 0;
+                }
+
+                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + ' <small class="confirmed">(' + today_dist_confirmed + ')</small></td><td>' + dist_deceased + '<small class="deceased">(' + today_dist_deceased + ')</small></td><td>' + dist_recovered + '<small class="recovered">(' + today_dist_recovered + ')</small></td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
                 $('.main_table').append(row);
             })
 
