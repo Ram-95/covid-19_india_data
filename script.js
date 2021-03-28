@@ -54,19 +54,41 @@ $(document).ready(function () {
             $('.main_table').append(row);
 
         });
-        $('.footer').text('Source: ' + url);
+        $('.footer > small').text('Source: ' + url);
     }
     fetch_data();
 
     function show_state_data(state_id) {
         $('.main_heading').text(state_code[state_id]);
         $('#main_table tbody').empty();
+        $('th:first').text('District Name');
         //alert(state_id);
         $.getJSON(url, function (data) {
-            console.log(data[state_id]);
+            //console.log(data[state_id]['districts']);
+            var district = data[state_id]['districts'];
+            
+            /* Total Data of State */
             var state = data[state_id];
             var state_total = state['total']['confirmed'].toLocaleString();
-            var row = '<tr><td>' + state_total + '</td></tr>';
+            var state_deceased = state['total']['deceased'].toLocaleString();
+            var state_recovered = state['total']['recovered'].toLocaleString();
+            var state_tested = state['total']['tested'].toLocaleString();
+            var state_vaccinated = state['total']['vaccinated'].toLocaleString();
+
+            /* Fetching the District data of the State. */
+            $.each(district, function (item) {
+                var dist = district[item];
+                //console.log(item, dist['total']);
+                var dist_confirmed = dist['total']['confirmed'] == undefined ? 0 : dist['total']['confirmed'].toLocaleString();
+                var dist_deceased = dist['total']['deceased'] == undefined ? 0 : dist['total']['deceased'].toLocaleString();
+                var dist_recovered = dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'].toLocaleString();
+                var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString();
+
+                var row = '<tr><td style="font-weight: 500; color: #007bff;">' + item + '</td><td>' + dist_confirmed + '</td><td>' + dist_deceased + '</td><td>' + dist_recovered + '</td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
+                $('.main_table').append(row);
+            })
+
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><strong>Total</strong></td><td>' + state_total + '</td><td>' + state_deceased + '</td><td>' + state_recovered + '</td><td>' + state_tested + '</td><td>' + state_vaccinated + '</td></tr>';
             $('.main_table').append(row);
         });
     };
