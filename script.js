@@ -28,7 +28,7 @@ $(document).ready(function () {
                     var today_recovered = data[item]['delta']['recovered'] == undefined ? 0 : data[item]['delta']['recovered'].toLocaleString();
                     var today_vaccinated = data[item]['delta']['vaccinated'] == undefined ? 0 : data[item]['delta']['vaccinated'].toLocaleString();
                     if (item != 'TT') {
-                        var row = '<tr><td><a class="state_name" href="#" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+                        var row = '<tr><td><a class="state_name" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                     }
 
                     //console.log(item, data[item]['delta']);
@@ -84,7 +84,7 @@ $(document).ready(function () {
                 var dist_recovered = dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'].toLocaleString();
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString();
 
-                var row = '<tr><td style="font-weight: 500; color: #007bff;">' + item + '</td><td>' + dist_confirmed + '</td><td>' + dist_deceased + '</td><td>' + dist_recovered + '</td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
+                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + '</td><td>' + dist_deceased + '</td><td>' + dist_recovered + '</td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
                 $('.main_table').append(row);
             })
 
