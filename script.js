@@ -45,7 +45,7 @@ $(document).ready(function () {
                     var today_vaccinated = data[item]['delta7']['vaccinated'] == undefined ? 0 : data[item]['delta7']['vaccinated'].toLocaleString();
                     var today_tested = data[item]['delta7']['tested'] == undefined ? 0 : data[item]['delta7']['tested'].toLocaleString();
 
-                    var row = '<tr><td><a class="state_name" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '<small class="tested">(' + today_tested + ')</small></td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+                    var row = '<tr><td><a class="state_name" id="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '<small class="tested">(+' + today_tested + ')</small></td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                 }
                 $('.main_table').append(row);
                 //console.log(item, data[item]);
@@ -53,12 +53,13 @@ $(document).ready(function () {
             })
             // Appending the Total figures at the last
 
-            var today_confirmed = data['TT']['delta']['confirmed'].toLocaleString();
-            var today_deceased = data['TT']['delta']['deceased'].toLocaleString();
-            var today_recovered = data['TT']['delta']['recovered'].toLocaleString();
-            var today_vaccinated = data['TT']['delta7']['vaccinated'].toLocaleString();
-            var today_tested = data['TT']['delta7']['tested'].toLocaleString();
-            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a>' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString() + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString() + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString() + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString() + ' <small class="tested">(' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString() + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+            var today_confirmed = data['TT']['delta']['confirmed'] == undefined ? 0 : data['TT']['delta']['confirmed'].toLocaleString();
+            var today_deceased = data['TT']['delta']['deceased'] == undefined ? 0 : data['TT']['delta']['deceased'].toLocaleString();
+            var today_recovered = data['TT']['delta']['recovered'] == undefined ? 0 : data['TT']['delta']['recovered'].toLocaleString();
+            var today_vaccinated = data['TT']['delta']['vaccinated'] == undefined ? 0 : data['TT']['delta7']['vaccinated'].toLocaleString();
+            var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta7']['tested'].toLocaleString();
+
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a>' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString() + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString() + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString() + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString() + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString() + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
 
         });
@@ -70,10 +71,11 @@ $(document).ready(function () {
         $('.main_heading').text(state_code[state_id]);
         $('#main_table tbody').empty();
         $('th:first').text('District Name');
-        //alert(state_id);
+
         $.getJSON(url, function (data) {
             // Last Updated date of State data
             var state_updated_date = data[state_id]['meta']['last_updated'];
+            //console.log(data[state_id]);
             x = state_updated_date.split('T');
             $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
 
@@ -109,7 +111,7 @@ $(document).ready(function () {
                     var today_dist_recovered = 0;
                 }
 
-                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + ' <small class="confirmed">(' + today_dist_confirmed + ')</small></td><td>' + dist_deceased + '<small class="deceased">(' + today_dist_deceased + ')</small></td><td>' + dist_recovered + '<small class="recovered">(' + today_dist_recovered + ')</small></td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
+                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + ' <small class="confirmed">(+' + today_dist_confirmed + ')</small></td><td>' + dist_deceased + '<small class="deceased">(+' + today_dist_deceased + ')</small></td><td>' + dist_recovered + '<small class="recovered">(+' + today_dist_recovered + ')</small></td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
                 $('.main_table').append(row);
             });
 
