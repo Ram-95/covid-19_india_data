@@ -1,3 +1,6 @@
+const time_series_url = 'https://api.covid19india.org/v4/min/timeseries-TT.min.json';
+/* Format: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json */
+
 const url = 'https://api.covid19india.org/v4/min/data.min.json'
 const state_code = {
     'AN': 'Andaman and Nicobar', 'AP': 'Andhra Pradesh', 'AR': 'Arunachal Pradesh', 'AS': 'Assam', 'BR': 'Bihar', 'TT': 'Total',
@@ -8,9 +11,13 @@ const state_code = {
     'TG': 'Telangana', 'TN': 'Tamil Nadu', 'TR': 'Tripura', 'UP': 'Uttar Pradesh', 'UT': 'Uttarakhand', 'WB': 'West Bengal'
 };
 var state_show_code;
+var refresh_flag;
 
 $(document).ready(function () {
     function fetch_data() {
+		refresh_flag = 1;
+		$('#main_table > tbody').empty();
+		console.log('Executed');
         $.getJSON(url, function (data) {
             var updated_date = data['TT']['meta']['last_updated'];
             // Adding the updated date
@@ -59,17 +66,26 @@ $(document).ready(function () {
             var today_recovered = data['TT']['delta']['recovered'] == undefined ? 0 : data['TT']['delta']['recovered'].toLocaleString('en-IN');
             var today_vaccinated = data['TT']['delta']['vaccinated'] == undefined ? 0 : data['TT']['delta7']['vaccinated'].toLocaleString('en-IN');
             var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta7']['tested'].toLocaleString('en-IN');
-            var today_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'];
+            var today_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
 
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a>' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString('en-IN') + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + today_active.toLocaleString('en-IN') + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString('en-IN') + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString('en-IN') + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString('en-IN') + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString('en-IN') + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
 
         });
         $('.footer > small').text('Source: ' + url);
+		
     }
     fetch_data();
+	// Refreshes every 5 minutes
+	/*
+	if(refresh_flag == 1) {
+		setInterval(fetch_data, 5000);
+	}
+	*/
+	
 
     function show_state_data(state_id) {
+		refresh_flag = 0;
         $('.main_heading').text(state_code[state_id]);
         $('#main_table tbody').empty();
         $('th:first').text('District Name');
