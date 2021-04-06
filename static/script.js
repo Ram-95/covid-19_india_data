@@ -25,6 +25,8 @@ $(document).ready(function () {
         let recovered_cases = []
         let active_cases = []
 
+        let mode = 'lines+markers';
+
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
             $.each(data, function (item) {
@@ -36,44 +38,49 @@ $(document).ready(function () {
                 recovered_cases.push(data[item]['total']['recovered']);
                 active_cases.push(data[item]['total']['confirmed'] - data[item]['total']['recovered'] - data[item]['total']['deceased'])
             });
-            let trace = {
+            var trace1 = {
                 x: date_range,
                 y: confirmed_cases,
                 marker: { color: 'blue' },
-                mode: 'lines+markers',
+                mode: mode,
                 name: 'Confirmed'
             }
 
-            let trace1 = {
+            var trace2 = {
                 x: date_range,
                 y: deceased_cases,
+                xaxis: 'x2',
+                yaxis: 'y2',
                 marker: { color: 'red' },
-                mode: 'lines+markers',
+                mode: mode,
                 name: 'Deceased'
             }
 
-            let trace2 = {
+            var trace3 = {
                 x: date_range,
                 y: recovered_cases,
+                xaxis: 'x3',
+                yaxis: 'y3',
                 marker: { color: 'green' },
-                mode: 'lines+markers',
+                mode: mode,
                 name: 'Recovered'
             }
 
-            let trace4 = {
+            var trace4 = {
                 x: date_range,
                 y: active_cases,
+                xaxis: 'x4',
+                yaxis: 'y4',
                 marker: { color: '#f05be8' },
-                mode: 'lines+markers',
+                mode: mode,
                 name: 'Active'
             }
 
-            let layout = {
-                title: 'COVID-19 Data - ' + state_code[state],
-                yaxis: { title: 'Cases' },
-                xaxis: { title: 'Date' }
+            var layout = {
+                grid: { rows: 2, columns: 2, pattern: 'independent' },
+                title: 'COVID-19 Data - ' + state_code[state]
             }
-            Plotly.plot('myDiv', [trace, trace1, trace2, trace4], layout, { displayModeBar: true });
+            Plotly.plot('totalDiv', [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
         });
     }
