@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,7 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script src="/static/state_script.js"></script>
@@ -28,6 +29,8 @@
         <small>Data as on: <span class="updated_date"></span></small>
         <br>
         <a href="/">Home</a>
+        <!--Plotly Graphs Section-->
+        <div id='stateDiv'></div>
         <table class="table-bordered table state_main_table text-center mt-3" id="{{ state_id }}">
             <thead>
                 <tr class="thead-dark">
@@ -45,7 +48,7 @@
             </tbody>
         </table>
     </div>
-    <!--Plotly Graphs Section-->
-    <div id='myDiv'></div>
+
 </body>
+
 </html>
