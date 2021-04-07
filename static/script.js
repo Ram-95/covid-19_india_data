@@ -1,7 +1,10 @@
+var state_names = [];
+var total_confirmed = [];
+var total_active = [];
+
 $(document).ready(function () {
     const time_series_url = 'https://api.covid19india.org/v4/min/timeseries.min.json';
     /* Format: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json */
-
     const url = 'https://api.covid19india.org/v4/min/data.min.json'
     const state_code = {
         'AN': 'Andaman and Nicobar', 'AP': 'Andhra Pradesh', 'AR': 'Arunachal Pradesh', 'AS': 'Assam', 'BR': 'Bihar', 'TT': 'Total',
@@ -11,8 +14,6 @@ $(document).ready(function () {
         'MZ': 'Mizoram', 'NL': 'Nagaland', 'OR': 'Odisha', 'PB': 'Punjab', 'PY': 'Puducherry', 'RJ': 'Rajasthan', 'SK': 'Sikkim',
         'TG': 'Telangana', 'TN': 'Tamil Nadu', 'TR': 'Tripura', 'UP': 'Uttar Pradesh', 'UT': 'Uttarakhand', 'WB': 'West Bengal'
     };
-
-
 
 
 
@@ -79,7 +80,8 @@ $(document).ready(function () {
             var layout = {
                 grid: { rows: 2, columns: 2, pattern: 'independent' },
                 title: 'COVID-19 Data - ' + state_code[state]
-            }
+            };
+
             Plotly.plot('totalDiv', [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
         });
@@ -104,8 +106,9 @@ $(document).ready(function () {
 
 
     function fetch_data() {
-        $('#main_table > tbody').empty();
+        //$('#main_table > tbody').empty();
         //console.log('Executed');
+
         $.getJSON(url, function (data) {
             var updated_date = data['TT']['meta']['last_updated'];
             // Adding the updated date
@@ -113,7 +116,15 @@ $(document).ready(function () {
             $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
 
             $.each(data, function (item) {
+                /* Used in plotting Bar graphs */
                 var total = data[item]['total'];
+                if (item != 'TT') {
+                    state_names.push(state_code[item]);
+                    total_confirmed.push(total['confirmed']);
+                    total_active.push(total['confirmed'] - total['deceased'] - total['recovered']);
+                }
+
+
                 // Total Cases
                 var confirmed = total['confirmed'].toLocaleString('en-IN');
                 var deceased = total['deceased'].toLocaleString('en-IN');
@@ -156,13 +167,52 @@ $(document).ready(function () {
             var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta7']['tested'].toLocaleString('en-IN');
             var today_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
 
-            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a>' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString('en-IN') + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + today_active.toLocaleString('en-IN') + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString('en-IN') + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString('en-IN') + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString('en-IN') + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString('en-IN') + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString('en-IN') + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + today_active.toLocaleString('en-IN') + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString('en-IN') + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString('en-IN') + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString('en-IN') + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString('en-IN') + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
-
+            states_bar_chart(state_names, total_confirmed, total_active);
         });
         $('.footer > small').text('Source: ' + url);
-        plot_time_series_data('TT');
-    }
-    fetch_data();
 
+
+    }
+
+    function states_bar_chart(state_names, total_confirmed, total_active) {
+        var trace1 = {
+            x: state_names,
+            y: total_confirmed,
+            type: 'bar',
+            name: 'Confirmed',
+            marker: {
+              color: 'rgb(10, 228, 240)',
+              opacity: 0.7,
+            }
+          };
+          
+          var trace2 = {
+            x: state_names,
+            y: total_active,
+            type: 'bar',
+            name: 'Active',
+            marker: {
+              color: 'rgb(252, 111, 3)',
+              opacity: 0.5
+            }
+          };
+          
+          var data = [trace1, trace2];
+          
+          var layout = {
+            title: 'State wise Data',
+            xaxis: {
+              tickangle: -45
+            },
+            barmode: 'group'
+          };
+          
+          Plotly.newPlot('totalBarDiv', data, layout);
+
+    }
+
+    fetch_data();
+    plot_time_series_data('TT');
 });
