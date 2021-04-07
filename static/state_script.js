@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 
 
-
+    
     /* Function that plots the time series data  */
     function plot_time_series_data(state) {
         let urls = 'https://api.covid19india.org/v4/min/timeseries-' + state + '.min.json';
@@ -78,9 +78,7 @@ $(document).ready(function () {
 
             let layout = {
                 grid: {rows: 2, columns: 2, pattern: 'independent'},
-                title: 'COVID-19 Data - ' + state_code[state],
-                yaxis: { title: 'Cases' },
-                xaxis: { title: 'Date' }
+                title: 'COVID-19 Data - ' + state_code[state]
             }
             Plotly.plot('stateDiv', [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
