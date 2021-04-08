@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <!--<meta http-equiv="refresh" content="60">-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Statistics - India</title>
+    <link rel="preconnect" href="https://api.covid19india.org/min/data.min.json" as="fetch">
+    <link rel="preconnect" href="https://api.covid19india.org/min/timeseries.min.json" as="fetch">
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/QAAA/0AAAAAAAAAAAAAA/0AAAP9AAAAAAAAA/0AAAP9AAAAAAAAAAAAAAP9AAAD/QAAAAAAAAAAAAAAAAAAA//8AAP//AAAAAAAAAAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAP//AAD//wAAAAAAAAAAAAD//wAA//8AAAAAAAD//wAA//8AAAAAAAAAAAAA//8AAP//AAAAAAAAAAAAAAAAAAD//wAA//8AAAAAAAAAAAAA//8AAP//AAAAAAAA//8AAP//AAAAAAAAAAAAAP//AAD//wAAAAAAAAAAAAAAAAAA//8AAP//AAAAAAAAAAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAP//AAD//wAAAAAAAAAAAAD//wAA//8AAAAAAAD//wAA//8AAAAAAAAAAAAA//8AAP//AAAAAAAAAAAAAAAAAAD/EAAA/xAAAAAAAAAAAAAA//8AAP//AAAAAAAA//8AAP//AAAAAAAAAAAAAP//AAD//wAAAAAAAAAAAAAAAAAA/88AAP/PAAD/EAAAAAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAAAAAAD/nwAA//8AAP/PAAD/EAAAAAAAAP8QAAD/EAAAAAAAAAAAAAAAAAAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+fAAD//wAA/88AAP8QAAD/zwAA/88AAP8QAAAAAAAAAAAAAP//AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/58AAP//AAD/zwAA//8AAP//AAD/zwAA/xAAAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/nwAA//8AAP+fAAD/nwAA//8AAP/PAAD/EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+fAAAAAAAAAAAAAP+fAAD//wAA/88AAP8QAAD/EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/58AAP//AAD/zwAA/88AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/nwAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/88AAP//AAD//wAAAAAAAAAA//8AAJkzAACZMwAAmTMAAJkzAACZMwAA+TMAAJkzAADH8wAA4nMAAPAzAAD4HwAA/Y8AAP/DAAD/4wAA/+MAAA=="
+        rel="icon" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    
+    
+    {% endblock %}
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

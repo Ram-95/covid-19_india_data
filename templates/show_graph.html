@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}
+COVID-19 Dashboard
+{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>{{ state_id }}</h1>
+    <!--Plotly Graphs Section-->
+    <div id='graphDiv'></div>
+{% endblock %}
