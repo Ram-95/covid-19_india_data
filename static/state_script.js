@@ -1,3 +1,9 @@
+var dist_active_bar = [];
+var dist_names_bar = [];
+var dist_confirmed_bar = [];
+var dist_recovered_bar = [];
+
+
 $(document).ready(function () {
     const time_series_url = 'https://api.covid19india.org/v4/min/timeseries.min.json';
     /* Format: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json */
@@ -117,6 +123,12 @@ $(document).ready(function () {
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString('en-IN');
                 var dist_active = dist['total']['confirmed'] - dist['total']['recovered'] - dist['total']['deceased'];
 
+                dist_names_bar.push(item);
+                dist_recovered_bar.push(dist_recovered);
+                dist_confirmed_bar.push(dist_confirmed);
+                dist_active_bar.push(dist_active);
+                
+                
                 // Today's data of districts
                 var today_dist_data = dist['delta7'] == undefined ? 0 : dist['delta7'];
                 if (today_dist_data != 0) {
@@ -134,6 +146,8 @@ $(document).ready(function () {
                 $('.state_main_table').append(row);
             });
 
+            district_bar_chart(dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar);
+
             var state_today_confirmed = state['delta7']['confirmed'] == undefined ? 0 : state['delta7']['confirmed'].toLocaleString('en-IN');
             var state_today_deceased = state['delta7']['deceased'] == undefined ? 0 : state['delta7']['deceased'].toLocaleString('en-IN');
             var state_today_recovered = state['delta7']['recovered'] == undefined ? 0 : state['delta7']['recovered'].toLocaleString('en-IN');
@@ -148,4 +162,53 @@ $(document).ready(function () {
     };
     state_id = $('.state_main_table').attr('id');
     show_state_data(state_id);
+
+
+    function district_bar_chart(dist_names_bar, dist_cofirmed_bar, dist_active_bar, dist_recovered_bar) {
+        var trace1 = {
+            x: dist_names_bar,
+            y: dist_confirmed_bar,
+            type: 'bar',
+            name: 'Confirmed',
+            marker: {
+              color: 'rgb(10, 228, 240)',
+              opacity: 0.7,
+            }
+          };
+          
+          var trace2 = {
+            x: dist_names_bar,
+            y: dist_active_bar,
+            type: 'bar',
+            name: 'Active',
+            marker: {
+              color: 'rgb(252, 111, 3)',
+              opacity: 0.5
+            }
+          };
+
+          var trace3 = {
+            x: dist_names_bar,
+            y: dist_recovered_bar,
+            type: 'bar',
+            name: 'Recovered',
+            marker: {
+              color: 'rgb(22, 111, 3)',
+              opacity: 0.5
+            }
+          };
+          
+          var data = [trace1, trace3, trace2];
+          
+          var layout = {
+            title: 'District wise Data',
+            xaxis: {
+              tickangle: -45
+            },
+            barmode: 'group'
+          };
+          
+          Plotly.newPlot('districtDiv', data, layout);
+
+    }
 });
