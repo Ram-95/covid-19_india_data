@@ -8,17 +8,19 @@ COVID-19 India
 {% endblock %}
 {% block content %}
 <div class="container content">
-    <h3 class="main_heading">COVID-19 Details - {{ state }}</h3>
+    <h3 class="main_heading">COVID-19 Dashboard - {{ state }}</h3>
     <small>Data as on: <span class="updated_date"></span></small>
-    <hr>
+    <br>
     <a href="/">Home</a>
+    <hr>
     <!--Plotly Graphs Section-->
     <div id='stateDiv'></div>
+    <div id='dailyStateDiv'></div>
     <div id='districtDiv'></div>
     <table class="table-bordered table state_main_table text-center mt-3" id="{{ state_id }}">
         <thead>
             <tr class="thead-dark">
-                <th class="sticky-col first-col">District Name</th>
+                <th>District Name</th>
                 <th>Confirmed</th>
                 <th>Active</th>
                 <th>Deceased</th>
