@@ -19,16 +19,22 @@ $(document).ready(function () {
 
 
     /* Function that plots the time series data  */
-    function plot_time_series_data(state) {
+    function plot_time_series_data(state, typeOfGraph, plotlyGraphDiv) {
         let urls = 'https://api.covid19india.org/v4/min/timeseries-' + state + '.min.json';
         let date_range = []
         let confirmed_cases = []
         let deceased_cases = []
         let recovered_cases = []
         let active_cases = []
-        let daily_cases = []
-
+        let filter;
         let mode = 'lines';
+
+        if(typeOfGraph == 'Cummulative') {
+            filter = 'total';
+        }
+        else if(typeOfGraph == 'Daily') {
+            filter = 'delta';
+        }
 
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
@@ -36,11 +42,11 @@ $(document).ready(function () {
                 //console.log(data[item]['total']);
                 //console.log(item);
                 date_range.push(item);
-                confirmed_cases.push(data[item]['total']['confirmed']);
-                deceased_cases.push(data[item]['total']['deceased']);
-                recovered_cases.push(data[item]['total']['recovered']);
-                daily_cases.push(data[item]['delta']['confirmed']);
-                active_cases.push(data[item]['total']['confirmed'] - data[item]['total']['recovered'] - data[item]['total']['deceased'])
+                confirmed_cases.push(data[item][filter]['confirmed']);
+                deceased_cases.push(data[item][filter]['deceased']);
+                recovered_cases.push(data[item][filter]['recovered']);
+                //daily_cases.push(data[item][fil]['confirmed']);
+                active_cases.push(data[item][filter]['confirmed'] - data[item][filter]['recovered'] - data[item][filter]['deceased'])
             });
             var trace1 = {
                 x: date_range,
@@ -80,23 +86,12 @@ $(document).ready(function () {
                 name: 'Active'
             }
 
-            var trace5 = {
-                x: date_range,
-                y: daily_cases,
-                xaxis: 'x5',
-                yaxis: 'y5',
-                marker: { color: '#889194' },
-                mode: mode,
-                name: 'Daily Confirmed'
-            }
-
-
             var layout = {
-                grid: { rows: 3, columns: 2, pattern: 'independent' },
-                title: 'COVID-19 Data - ' + state_code[state]
+                grid: { rows: 2, columns: 2, pattern: 'independent' },
+                title: 'COVID-19 Data - ' + state_code[state] + ' ('+ typeOfGraph +')'
             };
 
-            Plotly.plot('totalDiv', [trace1, trace2, trace3, trace4, trace5], layout, { displayModeBar: false });
+            Plotly.plot(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
         });
     }
@@ -235,10 +230,11 @@ $(document).ready(function () {
             barmode: 'group'
           };
           
-          Plotly.newPlot('totalBarDiv', data, layout);
+          Plotly.newPlot('totalBarDiv', data, layout, { displayModeBar: false });
 
     }
 
     fetch_data();
-    plot_time_series_data('TT');
+    plot_time_series_data('TT', 'Cummulative', 'totalDiv');
+    plot_time_series_data('TT', 'Daily', 'dailyDiv');
 });
