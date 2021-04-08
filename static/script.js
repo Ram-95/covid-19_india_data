@@ -1,6 +1,7 @@
 var state_names = [];
 var total_confirmed = [];
 var total_active = [];
+var total_recovered = [];
 
 $(document).ready(function () {
     const time_series_url = 'https://api.covid19india.org/v4/min/timeseries.min.json';
@@ -25,8 +26,9 @@ $(document).ready(function () {
         let deceased_cases = []
         let recovered_cases = []
         let active_cases = []
+        let daily_cases = []
 
-        let mode = 'lines+markers';
+        let mode = 'lines';
 
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
@@ -37,6 +39,7 @@ $(document).ready(function () {
                 confirmed_cases.push(data[item]['total']['confirmed']);
                 deceased_cases.push(data[item]['total']['deceased']);
                 recovered_cases.push(data[item]['total']['recovered']);
+                daily_cases.push(data[item]['delta']['confirmed']);
                 active_cases.push(data[item]['total']['confirmed'] - data[item]['total']['recovered'] - data[item]['total']['deceased'])
             });
             var trace1 = {
@@ -77,12 +80,23 @@ $(document).ready(function () {
                 name: 'Active'
             }
 
+            var trace5 = {
+                x: date_range,
+                y: daily_cases,
+                xaxis: 'x5',
+                yaxis: 'y5',
+                marker: { color: '#889194' },
+                mode: mode,
+                name: 'Daily Confirmed'
+            }
+
+
             var layout = {
-                grid: { rows: 2, columns: 2, pattern: 'independent' },
+                grid: { rows: 3, columns: 2, pattern: 'independent' },
                 title: 'COVID-19 Data - ' + state_code[state]
             };
 
-            Plotly.plot('totalDiv', [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
+            Plotly.plot('totalDiv', [trace1, trace2, trace3, trace4, trace5], layout, { displayModeBar: false });
 
         });
     }
@@ -122,6 +136,7 @@ $(document).ready(function () {
                     state_names.push(state_code[item]);
                     total_confirmed.push(total['confirmed']);
                     total_active.push(total['confirmed'] - total['deceased'] - total['recovered']);
+                    total_recovered.push(total['recovered']);
                 }
 
 
@@ -198,8 +213,19 @@ $(document).ready(function () {
               opacity: 0.5
             }
           };
+
+          var trace3 = {
+            x: state_names,
+            y: total_recovered,
+            type: 'bar',
+            name: 'Recovered',
+            marker: {
+              color: 'rgb(22, 111, 3)',
+              opacity: 0.5
+            }
+          };
           
-          var data = [trace1, trace2];
+          var data = [trace1, trace3, trace2];
           
           var layout = {
             title: 'State wise Data',
