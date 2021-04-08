@@ -20,30 +20,39 @@ $(document).ready(function () {
 
 
 
-    
-    /* Function that plots the time series data  */
-    function plot_time_series_data(state) {
+
+    function plot_time_series_data(state, typeOfGraph, plotlyGraphDiv) {
         let urls = 'https://api.covid19india.org/v4/min/timeseries-' + state + '.min.json';
         let date_range = []
         let confirmed_cases = []
         let deceased_cases = []
         let recovered_cases = []
         let active_cases = []
+        let filter;
+        let mode = 'lines';
 
-        let mode = 'lines+markers';
+
+        if (typeOfGraph == 'Cummulative') {
+            filter = 'total';
+        }
+        else if (typeOfGraph == 'Daily') {
+            filter = 'delta';
+        }
+
 
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
             $.each(data, function (item) {
-                //console.log(data[item]['total']);
-                //console.log(item);
+                //console.log(data[item]['delta']);
                 date_range.push(item);
-                confirmed_cases.push(data[item]['total']['confirmed']);
-                deceased_cases.push(data[item]['total']['deceased']);
-                recovered_cases.push(data[item]['total']['recovered']);
-                active_cases.push(data[item]['total']['confirmed'] - data[item]['total']['recovered'] - data[item]['total']['deceased'])
+                if (data[item][filter] != undefined) {
+                    confirmed_cases.push(data[item][filter]['confirmed']);
+                    deceased_cases.push(data[item][filter]['deceased']);
+                    recovered_cases.push(data[item][filter]['recovered']);
+                    active_cases.push(data[item][filter]['confirmed'] - data[item][filter]['recovered'] - data[item][filter]['deceased'])
+                }
             });
-            let trace1 = {
+            var trace1 = {
                 x: date_range,
                 y: confirmed_cases,
                 marker: { color: 'blue' },
@@ -51,7 +60,7 @@ $(document).ready(function () {
                 name: 'Confirmed'
             }
 
-            let trace2 = {
+            var trace2 = {
                 x: date_range,
                 y: deceased_cases,
                 xaxis: 'x2',
@@ -61,7 +70,7 @@ $(document).ready(function () {
                 name: 'Deceased'
             }
 
-            let trace3 = {
+            var trace3 = {
                 x: date_range,
                 y: recovered_cases,
                 xaxis: 'x3',
@@ -71,22 +80,22 @@ $(document).ready(function () {
                 name: 'Recovered'
             }
 
-            let trace4 = {
+            var trace4 = {
                 x: date_range,
                 y: active_cases,
                 xaxis: 'x4',
                 yaxis: 'y4',
                 marker: { color: '#f05be8' },
                 mode: mode,
-                name: 'Active',
-                title: 'Active Cases'
+                name: 'Active'
             }
 
-            let layout = {
-                grid: {rows: 2, columns: 2, pattern: 'independent'},
-                title: 'COVID-19 Data - ' + state_code[state]
-            }
-            Plotly.plot('stateDiv', [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
+            var layout = {
+                grid: { rows: 2, columns: 2, pattern: 'independent' },
+                title: 'COVID-19 Data - ' + state_code[state] + ' (' + typeOfGraph + ')'
+            };
+
+            Plotly.plot(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
         });
     }
@@ -127,8 +136,8 @@ $(document).ready(function () {
                 dist_recovered_bar.push(dist_recovered);
                 dist_confirmed_bar.push(dist_confirmed);
                 dist_active_bar.push(dist_active);
-                
-                
+
+
                 // Today's data of districts
                 var today_dist_data = dist['delta7'] == undefined ? 0 : dist['delta7'];
                 if (today_dist_data != 0) {
@@ -158,7 +167,8 @@ $(document).ready(function () {
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><strong>Total</strong></td><td>' + state_total + '<small class="confirmed">(+' + state_today_confirmed + ')</small>' + '</td><td>' + state_active.toLocaleString('en-IN') + '</td><td>' + state_deceased + '<small class="deceased">(+' + state_today_deceased + ')</small>' + '</td><td>' + state_recovered + '<small class="recovered">(+' + state_today_recovered + ')</small>' + '</td><td>' + state_tested + '<small class="tested">(+' + state_today_tested + ')</small>' + '</td><td>' + state_vaccinated + '<small class="vaccinated">(+' + state_today_vaccinated + ')</small>' + '</td></tr>';
             $('.state_main_table').append(row);
         });
-        plot_time_series_data(state_id);
+        plot_time_series_data(state_id, 'Cummulative', 'stateDiv');
+        plot_time_series_data(state_id, 'Daily', 'dailyStateDiv');
     };
     state_id = $('.state_main_table').attr('id');
     show_state_data(state_id);
@@ -171,44 +181,44 @@ $(document).ready(function () {
             type: 'bar',
             name: 'Confirmed',
             marker: {
-              color: 'rgb(10, 228, 240)',
-              opacity: 0.7,
+                color: 'rgb(10, 228, 240)',
+                opacity: 0.7,
             }
-          };
-          
-          var trace2 = {
+        };
+
+        var trace2 = {
             x: dist_names_bar,
             y: dist_active_bar,
             type: 'bar',
             name: 'Active',
             marker: {
-              color: 'rgb(252, 111, 3)',
-              opacity: 0.5
+                color: 'rgb(252, 111, 3)',
+                opacity: 0.5
             }
-          };
+        };
 
-          var trace3 = {
+        var trace3 = {
             x: dist_names_bar,
             y: dist_recovered_bar,
             type: 'bar',
             name: 'Recovered',
             marker: {
-              color: 'rgb(22, 111, 3)',
-              opacity: 0.5
+                color: 'rgb(22, 111, 3)',
+                opacity: 0.5
             }
-          };
-          
-          var data = [trace1, trace3, trace2];
-          
-          var layout = {
+        };
+
+        var data = [trace1, trace3, trace2];
+
+        var layout = {
             title: 'District wise Data',
             xaxis: {
-              tickangle: -45
+                tickangle: -45
             },
             barmode: 'group'
-          };
-          
-          Plotly.newPlot('districtDiv', data, layout);
+        };
+
+        Plotly.newPlot('districtDiv', data, layout, { displayModeBar: false });
 
     }
 });
