@@ -8,12 +8,7 @@ __pycache__/
 # C extensions
 *.so
 _*/
-TO-DO
-*.zip
-RG_*/
-IB_*/
-CJ_*/
-BST_*/
+test.html
 
 # Distribution / packaging
 .Python
