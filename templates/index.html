@@ -7,28 +7,29 @@ COVID-19 India
 <script src="/static/script.js"></script>
 {% endblock %}
 {% block content %}
-    <div class="container content">
-        <h3 class="main_heading">COVID-19 Details - India</h3>
-        <small>Data as on: <span class="updated_date"></span></small>
-        <hr>
-        <!--Plotly graph-->
-        <div id="totalDiv"></div>
-        <div id='totalBarDiv'></div>
-        <table class="table-bordered table main_table text-center mt-3" id="main_table">
-            <thead>
-                <tr class="thead-dark">
-                    <th>State Name</th>
-                    <th>Confirmed</th>
-                    <th>Active</th>
-                    <th>Deceased</th>
-                    <th>Recovered</th>
-                    <th>Tested</th>
-                    <th>Vaccinated</th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="container content">
+    <h3 class="main_heading">COVID-19 Details - India</h3>
+    <small>Data as on: <span class="updated_date"></span></small>
+    <hr>
+    <!--Plotly graph-->
+    <div id="totalDiv"></div>
+    <div id="dailyDiv"></div>
+    <div id='totalBarDiv'></div>
+    <table class="table-bordered table main_table text-center mt-3" id="main_table">
+        <thead>
+            <tr class="thead-dark">
+                <th>State Name</th>
+                <th>Confirmed</th>
+                <th>Active</th>
+                <th>Deceased</th>
+                <th>Recovered</th>
+                <th>Tested</th>
+                <th>Vaccinated</th>
+            </tr>
+        </thead>
+        <tbody>
 
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
