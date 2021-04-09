@@ -1,10 +1,9 @@
-var dist_active_bar = [];
-var dist_names_bar = [];
-var dist_confirmed_bar = [];
-var dist_recovered_bar = [];
-
-
 $(document).ready(function () {
+    var dist_active_bar = [];
+    var dist_names_bar = [];
+    var dist_confirmed_bar = [];
+    var dist_recovered_bar = [];
+
     const time_series_url = 'https://api.covid19india.org/v4/min/timeseries.min.json';
     /* Format: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json */
 
@@ -17,8 +16,6 @@ $(document).ready(function () {
         'MZ': 'Mizoram', 'NL': 'Nagaland', 'OR': 'Odisha', 'PB': 'Punjab', 'PY': 'Puducherry', 'RJ': 'Rajasthan', 'SK': 'Sikkim',
         'TG': 'Telangana', 'TN': 'Tamil Nadu', 'TR': 'Tripura', 'UP': 'Uttar Pradesh', 'UT': 'Uttarakhand', 'WB': 'West Bengal'
     };
-
-
 
 
     function plot_time_series_data(state, typeOfGraph, plotlyGraphDiv) {
@@ -100,19 +97,38 @@ $(document).ready(function () {
         });
     }
 
+    // Sorting based on the confirmed cases of a district of a state and plots the district level bar graph
+    function sort_and_store(district_data, dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar) {
+        district_data.sort(function (a, b) {
+            if (a[1] < b[1]) {
+                return 1
+            }
+            else if (a[1] > b[1]) {
+                return -1
+            }
+            return 0;
+        });
+        for (var i = 0; i < district_data.length; i++) {
+            dist_names_bar.push(district_data[i][0]);
+            dist_confirmed_bar.push(district_data[i][1]);
+            dist_active_bar.push(district_data[i][3]);
+            dist_recovered_bar.push(district_data[i][2]);
+        }
+        // Plots the bar-graph
+        district_bar_chart(dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar);
+    }
 
 
     function show_state_data(state_id) {
         $.getJSON(url, function (data) {
             // Last Updated date of State data
             var state_updated_date = data[state_id]['meta']['last_updated'];
-            //alert(state_updated_date);
             //console.log(data[state_id]);
             x = state_updated_date.split('T');
             $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
 
             var district = data[state_id]['districts'];
-
+            var district_data = [];
             /* Total Data of State */
             var state = data[state_id];
             var state_total = state['total']['confirmed'].toLocaleString('en-IN');
@@ -132,10 +148,13 @@ $(document).ready(function () {
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString('en-IN');
                 var dist_active = dist['total']['confirmed'] - dist['total']['recovered'] - dist['total']['deceased'];
 
-                dist_names_bar.push(item);
-                dist_recovered_bar.push(dist_recovered);
-                dist_confirmed_bar.push(dist_confirmed);
-                dist_active_bar.push(dist_active);
+                // Appending the current district data to the district_data array
+                district_data.push([
+                    item,
+                    dist['total']['confirmed'] == undefined ? 0 : dist['total']['confirmed'],
+                    dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'],
+                    dist_active
+                ]);
 
 
                 // Today's data of districts
@@ -155,7 +174,8 @@ $(document).ready(function () {
                 $('.state_main_table').append(row);
             });
 
-            district_bar_chart(dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar);
+            // Sort the district data based on confirmed cases and plot the district bar graph.
+            sort_and_store(district_data, dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar);
 
             var state_today_confirmed = state['delta7']['confirmed'] == undefined ? 0 : state['delta7']['confirmed'].toLocaleString('en-IN');
             var state_today_deceased = state['delta7']['deceased'] == undefined ? 0 : state['delta7']['deceased'].toLocaleString('en-IN');
@@ -174,7 +194,7 @@ $(document).ready(function () {
     show_state_data(state_id);
 
 
-    function district_bar_chart(dist_names_bar, dist_cofirmed_bar, dist_active_bar, dist_recovered_bar) {
+    function district_bar_chart(dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar) {
         var trace1 = {
             x: dist_names_bar,
             y: dist_confirmed_bar,
