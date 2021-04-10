@@ -39,10 +39,10 @@ $(document).ready(function () {
 
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
+            //console.log(data);
             $.each(data, function (item) {
-                //console.log(data[item]['delta']);
-                date_range.push(item);
                 if (data[item][filter] != undefined) {
+                    date_range.push(item);
                     confirmed_cases.push(data[item][filter]['confirmed']);
                     deceased_cases.push(data[item][filter]['deceased']);
                     recovered_cases.push(data[item][filter]['recovered']);
