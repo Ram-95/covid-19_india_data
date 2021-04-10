@@ -39,10 +39,10 @@ $(document).ready(function () {
 
         Plotly.d3.json(urls, function (figure) {
             let data = figure[state]['dates'];
+            //console.log(data);
             $.each(data, function (item) {
-                //console.log(data[item]['delta']);
-                date_range.push(item);
                 if (data[item][filter] != undefined) {
+                    date_range.push(item);
                     confirmed_cases.push(data[item][filter]['confirmed']);
                     deceased_cases.push(data[item][filter]['deceased']);
                     recovered_cases.push(data[item][filter]['recovered']);
@@ -158,7 +158,7 @@ $(document).ready(function () {
 
 
                 // Today's data of districts
-                var today_dist_data = dist['delta7'] == undefined ? 0 : dist['delta7'];
+                var today_dist_data = dist['delta'] == undefined ? 0 : dist['delta'];
                 if (today_dist_data != 0) {
                     var today_dist_confirmed = today_dist_data['confirmed'] == undefined ? 0 : today_dist_data['confirmed'].toLocaleString('en-IN');
                     var today_dist_deceased = today_dist_data['deceased'] == undefined ? 0 : today_dist_data['deceased'].toLocaleString('en-IN');
@@ -176,13 +176,20 @@ $(document).ready(function () {
 
             // Sort the district data based on confirmed cases and plot the district bar graph.
             sort_and_store(district_data, dist_names_bar, dist_confirmed_bar, dist_active_bar, dist_recovered_bar);
-
-            var state_today_confirmed = state['delta7']['confirmed'] == undefined ? 0 : state['delta7']['confirmed'].toLocaleString('en-IN');
-            var state_today_deceased = state['delta7']['deceased'] == undefined ? 0 : state['delta7']['deceased'].toLocaleString('en-IN');
-            var state_today_recovered = state['delta7']['recovered'] == undefined ? 0 : state['delta7']['recovered'].toLocaleString('en-IN');
-            var state_today_vaccinated = state['delta7']['vaccinated'] == undefined ? 0 : state['delta7']['vaccinated'].toLocaleString('en-IN');
-            var state_today_tested = state['delta7']['tested'] == undefined ? 0 : state['delta7']['tested'].toLocaleString('en-IN');
-
+            if (state.delta) {
+                var state_today_confirmed = state['delta']['confirmed'] == undefined ? 0 : state['delta']['confirmed'].toLocaleString('en-IN');
+                var state_today_deceased = state['delta']['deceased'] == undefined ? 0 : state['delta']['deceased'].toLocaleString('en-IN');
+                var state_today_recovered = state['delta']['recovered'] == undefined ? 0 : state['delta']['recovered'].toLocaleString('en-IN');
+                var state_today_vaccinated = state['delta']['vaccinated'] == undefined ? 0 : state['delta']['vaccinated'].toLocaleString('en-IN');
+                var state_today_tested = state['delta']['tested'] == undefined ? 0 : state['delta']['tested'].toLocaleString('en-IN');
+            }
+            else {
+                var state_today_confirmed = 0;
+                var state_today_deceased = 0;
+                var state_today_recovered = 0;
+                var state_today_tested = 0;
+                var state_today_vaccinated = 0;
+            }
 
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><strong>Total</strong></td><td>' + state_total + '<small class="confirmed">(+' + state_today_confirmed + ')</small>' + '</td><td>' + state_active.toLocaleString('en-IN') + '</td><td>' + state_deceased + '<small class="deceased">(+' + state_today_deceased + ')</small>' + '</td><td>' + state_recovered + '<small class="recovered">(+' + state_today_recovered + ')</small>' + '</td><td>' + state_tested + '<small class="tested">(+' + state_today_tested + ')</small>' + '</td><td>' + state_vaccinated + '<small class="vaccinated">(+' + state_today_vaccinated + ')</small>' + '</td></tr>';
             $('.state_main_table').append(row);
