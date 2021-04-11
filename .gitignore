@@ -9,6 +9,7 @@ __pycache__/
 *.so
 _*/
 test.html
+To-Do.txt
 
 # Distribution / packaging
 .Python
