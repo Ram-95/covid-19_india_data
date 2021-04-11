@@ -131,6 +131,7 @@ $(document).ready(function () {
             var district_data = [];
             /* Total Data of State */
             var state = data[state_id];
+            
             var state_total = state['total']['confirmed'].toLocaleString('en-IN');
             var state_deceased = state['total']['deceased'].toLocaleString('en-IN');
             var state_recovered = state['total']['recovered'].toLocaleString('en-IN');
@@ -146,6 +147,7 @@ $(document).ready(function () {
                 var dist_deceased = dist['total']['deceased'] == undefined ? 0 : dist['total']['deceased'].toLocaleString('en-IN');
                 var dist_recovered = dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'].toLocaleString('en-IN');
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString('en-IN');
+                var dist_vaccinated = dist['total']['vaccinated'] == undefined ? 0 : dist['total']['vaccinated'].toLocaleString('en-IN');
                 var dist_active = dist['total']['confirmed'] - dist['total']['recovered'] - dist['total']['deceased'];
 
                 // Appending the current district data to the district_data array
@@ -163,14 +165,18 @@ $(document).ready(function () {
                     var today_dist_confirmed = today_dist_data['confirmed'] == undefined ? 0 : today_dist_data['confirmed'].toLocaleString('en-IN');
                     var today_dist_deceased = today_dist_data['deceased'] == undefined ? 0 : today_dist_data['deceased'].toLocaleString('en-IN');
                     var today_dist_recovered = today_dist_data['recovered'] == undefined ? 0 : today_dist_data['recovered'].toLocaleString('en-IN');
+                    var today_dist_tested = today_dist_data['tested'] == undefined ? 0 : today_dist_data['tested'].toLocaleString('en-IN');
+                    var today_dist_vaccinated = today_dist_data['vaccinated'] == undefined ? 0 : today_dist_data['vaccinated'].toLocaleString('en-IN');
                 }
                 else {
                     var today_dist_confirmed = 0;
                     var today_dist_deceased = 0;
                     var today_dist_recovered = 0;
+                    var today_dist_tested = 0;
+                    var today_dist_vaccinated = 0;
                 }
 
-                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + ' <small class="confirmed">(+' + today_dist_confirmed + ')</small></td><td>' + dist_active.toLocaleString('en-IN') + '</td><td>' + dist_deceased + '<small class="deceased">(+' + today_dist_deceased + ')</small></td><td>' + dist_recovered + '<small class="recovered">(+' + today_dist_recovered + ')</small></td><td>' + dist_tested + '</td><td>' + 'NA' + '</td></tr>';
+                var row = '<tr><td style="font-weight: 500; color: #630bd8;">' + item + '</td><td>' + dist_confirmed + ' <small class="confirmed">(+' + today_dist_confirmed + ')</small></td><td>' + dist_active.toLocaleString('en-IN') + '</td><td>' + dist_deceased + '<small class="deceased">(+' + today_dist_deceased + ')</small></td><td>' + dist_recovered + '<small class="recovered">(+' + today_dist_recovered + ')</small></td><td>' + dist_tested + '<small class="tested">(+' + today_dist_tested + ')</small></td><td>' + dist_vaccinated + '<small class="vaccinated">(+' + today_dist_vaccinated + ')</small></td></tr>';
                 $('.state_main_table').append(row);
             });
 

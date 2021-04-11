@@ -53,3 +53,33 @@ td>small {
 .tested {
     color: #bd4618e8;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+footer>* {
+    align-self: center;
+    text-align: center;
+}
+
+.link {
+    align-self: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 34rem;
+}
+
+.link i {
+    color: black;
+    font-size: 1.5rem;
+}
+
+.link i:hover {
+    color: gray;
+    font-size: 1.6rem;
+}
