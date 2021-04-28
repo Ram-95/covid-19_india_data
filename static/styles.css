@@ -83,3 +83,50 @@ footer>* {
     color: gray;
     font-size: 1.6rem;
 }
+
+.container_data {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    align-items: center;
+    max-width: 100%;
+    flex-grow: inherit;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.container_data div {
+    /*border: 1px solid #ccc;*/
+    margin: 0 1rem;
+    padding: 1rem;
+    border: 1px solid green;
+    border-radius: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.confirmed_24 {
+    background-color: aliceblue;
+    color: #1269d4;
+}
+
+.deceased_24 {
+    background-color: whitesmoke;
+    color: #827b7b;
+}
+
+.recovered_24 {
+    background-color: #cbfbcb;
+    color: green;
+}
+
+@media only screen and (max-width: 600px) {
+    .container_data {
+        display: flex;
+        flex-direction: column;
+    }
+    .container_data div {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}

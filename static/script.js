@@ -177,7 +177,12 @@ $(document).ready(function () {
 
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString('en-IN') + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + today_active.toLocaleString('en-IN') + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString('en-IN') + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString('en-IN') + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString('en-IN') + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString('en-IN') + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
-            console.log(data['TT']);
+            //console.log(data['TT']);
+            /* Adding the Last 24 hours data */
+            var prev_day = data['TT']['delta'];
+            $('.confirmed_24 > h3').text(prev_day['confirmed'].toLocaleString('en-IN'));
+            $('.deceased_24 > h3').text(prev_day['deceased'].toLocaleString('en-IN'));
+            $('.recovered_24 > h3').text(prev_day['recovered'].toLocaleString('en-IN'));
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
