@@ -123,14 +123,19 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
             // Last Updated date of State data
             var state_updated_date = data[state_id]['meta']['last_updated'];
-            //console.log(data[state_id]);
-            /* Last 24 hours data */
-            var prev_day = data[state_id]['delta'];
-            $('.confirmed_24 > h3').text(prev_day['confirmed'].toLocaleString('en-IN'));
-            $('.deceased_24 > h3').text(prev_day['deceased'].toLocaleString('en-IN'));
-            $('.recovered_24 > h3').text(prev_day['recovered'].toLocaleString('en-IN'));
             x = state_updated_date.split('T');
             $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
+            //console.log(data[state_id]);
+            
+            /* Last 24 hours data */
+            var prev_day = data[state_id]['delta'];
+            var confirmed_24 = prev_day['confirmed'] == undefined ? 0 : prev_day['confirmed'].toLocaleString('en-IN') ;
+            var deceased_24 = prev_day['deceased'] == undefined ? 0 : prev_day['deceased'].toLocaleString('en-IN') ;
+            var recovered_24 = prev_day['recovered'] == undefined ? 0 : prev_day['recovered'].toLocaleString('en-IN') ;
+            $('.confirmed_24 > h3').text(confirmed_24);
+            $('.deceased_24 > h3').text(deceased_24);
+            $('.recovered_24 > h3').text(recovered_24);
+            
 
             var district = data[state_id]['districts'];
             var district_data = [];
