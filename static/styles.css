@@ -92,7 +92,7 @@ footer>* {
     max-width: 100%;
     flex-grow: inherit;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 .container_data div {
@@ -112,8 +112,8 @@ footer>* {
 
 .deceased_24 {
     background-color: whitesmoke;
-    color: #827b7b;
-    border: 1px solid #827b7b;
+    color: #6b6a6a;
+    border: 1px solid #6b6a6a;
 }
 
 .recovered_24 {
