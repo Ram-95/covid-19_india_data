@@ -125,29 +125,42 @@ $(document).ready(function () {
             var state_updated_date = data[state_id]['meta']['last_updated'];
             x = state_updated_date.split('T');
             $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
-            //console.log(data[state_id]);
-            
-            /* Last 24 hours data */
-            var prev_day = data[state_id]['delta'];
-            var confirmed_24 = prev_day['confirmed'] == undefined ? 0 : prev_day['confirmed'].toLocaleString('en-IN') ;
-            var deceased_24 = prev_day['deceased'] == undefined ? 0 : prev_day['deceased'].toLocaleString('en-IN') ;
-            var recovered_24 = prev_day['recovered'] == undefined ? 0 : prev_day['recovered'].toLocaleString('en-IN') ;
-            $('.confirmed_24 > h3').text(confirmed_24);
-            $('.deceased_24 > h3').text(deceased_24);
-            $('.recovered_24 > h3').text(recovered_24);
-            
+            console.log(data[state_id]);
+
 
             var district = data[state_id]['districts'];
             var district_data = [];
+
             /* Total Data of State */
             var state = data[state_id];
-            
+
             var state_total = state['total']['confirmed'].toLocaleString('en-IN');
             var state_deceased = state['total']['deceased'].toLocaleString('en-IN');
             var state_recovered = state['total']['recovered'].toLocaleString('en-IN');
             var state_tested = state['total']['tested'].toLocaleString('en-IN');
             var state_active = state['total']['confirmed'] - state['total']['deceased'] - state['total']['recovered'];
             var state_vaccinated = state['total']['vaccinated'].toLocaleString('en-IN');
+
+
+            /* Last 24 hours data */
+            var prev_day = data[state_id]['delta'];
+            console.log(prev_day);
+            if (prev_day != undefined) {
+                var confirmed_24 = prev_day['confirmed'] == undefined ? 0 : prev_day['confirmed'].toLocaleString('en-IN');
+                var deceased_24 = prev_day['deceased'] == undefined ? 0 : prev_day['deceased'].toLocaleString('en-IN');
+                var recovered_24 = prev_day['recovered'] == undefined ? 0 : prev_day['recovered'].toLocaleString('en-IN');
+                $('.confirmed_24 > h3').text(state_total);
+                $('.confirmed_24 > small').text('(+'+ confirmed_24 +')')
+                $('.deceased_24 > h3').text(state_deceased);
+                $('.deceased_24 > small').text('(+'+ deceased_24 +')')
+                $('.recovered_24 > h3').text(state_recovered);
+                $('.recovered_24 > small').text('(+'+ recovered_24 +')')
+            }
+            else {
+                $('.confirmed_24 > h3').text(state_total);
+                $('.deceased_24 > h3').text(state_deceased);
+                $('.recovered_24 > h3').text(state_recovered);
+            }
 
             /* Fetching the District data of the State. */
             $.each(district, function (item) {

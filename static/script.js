@@ -120,7 +120,9 @@ $(document).ready(function () {
     function fetch_data() {
         //$('#main_table > tbody').empty();
         //console.log('Executed');
-
+        var confirmed;
+        var deceased;
+        var recovered;
         $.getJSON(url, function (data) {
             var updated_date = data['TT']['meta']['last_updated'];
             // Adding the updated date
@@ -136,9 +138,9 @@ $(document).ready(function () {
 
 
                 // Total Cases
-                var confirmed = total['confirmed'].toLocaleString('en-IN');
-                var deceased = total['deceased'].toLocaleString('en-IN');
-                var recovered = total['recovered'].toLocaleString('en-IN');
+                confirmed = total['confirmed'].toLocaleString('en-IN');
+                deceased = total['deceased'].toLocaleString('en-IN');
+                recovered = total['recovered'].toLocaleString('en-IN');
                 var tested = total['tested'].toLocaleString('en-IN');
                 var vaccinated = total['vaccinated'].toLocaleString('en-IN');
                 var active = total['confirmed'] - total['deceased'] - total['recovered'];
@@ -161,7 +163,7 @@ $(document).ready(function () {
                 if (item != 'TT') {
                     var row = '<tr><td><a class="state_name" href="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '<td>' + active.toLocaleString('en-IN') + '</td>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                 }
-                
+
                 $('.main_table').append(row);
                 //console.log(item, data[item]);
 
@@ -180,9 +182,19 @@ $(document).ready(function () {
             //console.log(data['TT']);
             /* Adding the Last 24 hours data */
             var prev_day = data['TT']['delta'];
-            $('.confirmed_24 > h3').text(prev_day['confirmed'].toLocaleString('en-IN'));
-            $('.deceased_24 > h3').text(prev_day['deceased'].toLocaleString('en-IN'));
-            $('.recovered_24 > h3').text(prev_day['recovered'].toLocaleString('en-IN'));
+            if (prev_day != undefined) {
+                $('.confirmed_24 > h3').text(confirmed);
+                $('.confirmed_24 > small').text('(+' + prev_day['confirmed'].toLocaleString('en-IN') + ')');
+                $('.deceased_24 > h3').text(deceased);
+                $('.deceased_24 > small').text('(+' + prev_day['deceased'].toLocaleString('en-IN') + ')');
+                $('.recovered_24 > h3').text(recovered);
+                $('.recovered_24 > small').text('(+' + prev_day['recovered'].toLocaleString('en-IN') + ')');
+            }
+            else {
+                $('.confirmed_24 > h3').text(confirmed);
+                $('.deceased_24 > h3').text(deceased);
+                $('.recovered_24 > h3').text(recovered);
+            }
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
