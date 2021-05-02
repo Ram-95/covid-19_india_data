@@ -163,7 +163,7 @@ $(document).ready(function () {
                 $('.recovered_24 > h3').text(state_recovered);
                 $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
             }
-
+            $('.vaccination_number').text(state_vaccinated + ' vaccines administered');
             /* Fetching the District data of the State. */
             $.each(district, function (item) {
                 var dist = district[item];

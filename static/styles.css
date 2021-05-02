@@ -128,6 +128,17 @@ footer>* {
     border: 1px solid red;
 }
 
+.vaccination_number {
+    color: blue;
+    background-color: turquoise;
+    width: fit-content;
+    text-align: center;
+    align-items: center;
+    margin: 2rem auto;
+    padding: 0.5rem;
+    border-radius: 0.7rem;
+}
+
 @media only screen and (max-width: 600px) {
     .container_data {
         display: flex;

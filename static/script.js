@@ -205,6 +205,7 @@ $(document).ready(function () {
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
 
             }
+            $('.vaccination_number').text(TT_vaccinated + ' vaccines administered.');
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
