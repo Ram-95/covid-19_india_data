@@ -195,11 +195,15 @@ $(document).ready(function () {
                 $('.deceased_24 > small').text('(+' + prev_day['deceased'].toLocaleString('en-IN') + ')');
                 $('.recovered_24 > h3').text(TT_recovered);
                 $('.recovered_24 > small').text('(+' + prev_day['recovered'].toLocaleString('en-IN') + ')');
+                $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
+                $('.active_24 > small').text('(+' + (prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered']).toLocaleString('en-IN') + ')');
             }
             else {
                 $('.confirmed_24 > h3').text(TT_confirmed);
                 $('.deceased_24 > h3').text(TT_deceased);
                 $('.recovered_24 > h3').text(TT_recovered);
+                $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
+
             }
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);

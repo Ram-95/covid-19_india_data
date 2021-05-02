@@ -154,11 +154,14 @@ $(document).ready(function () {
                 $('.deceased_24 > small').text('(+'+ deceased_24 +')')
                 $('.recovered_24 > h3').text(state_recovered);
                 $('.recovered_24 > small').text('(+'+ recovered_24 +')')
+                $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
+                $('.active_24 > small').text('(+' + (prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered']).toLocaleString('en-IN')  + ')');
             }
             else {
                 $('.confirmed_24 > h3').text(state_total);
                 $('.deceased_24 > h3').text(state_deceased);
                 $('.recovered_24 > h3').text(state_recovered);
+                $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
             }
 
             /* Fetching the District data of the State. */
