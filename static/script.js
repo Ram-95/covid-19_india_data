@@ -120,14 +120,11 @@ $(document).ready(function () {
     function fetch_data() {
         //$('#main_table > tbody').empty();
         //console.log('Executed');
-        var confirmed;
-        var deceased;
-        var recovered;
         $.getJSON(url, function (data) {
             var updated_date = data['TT']['meta']['last_updated'];
             // Adding the updated date
             x = updated_date.split('T');
-            $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
+            $('.updated_date').text(moment(updated_date).format('MMMM Do YYYY, h:mm:ss a') + ' (IST)');
             var state_data = [];
             $.each(data, function (item) {
                 /* Used in plotting Bar graphs */
@@ -138,9 +135,9 @@ $(document).ready(function () {
 
 
                 // Total Cases
-                confirmed = total['confirmed'].toLocaleString('en-IN');
-                deceased = total['deceased'].toLocaleString('en-IN');
-                recovered = total['recovered'].toLocaleString('en-IN');
+                var confirmed = total['confirmed'].toLocaleString('en-IN');
+                var deceased = total['deceased'].toLocaleString('en-IN');
+                var recovered = total['recovered'].toLocaleString('en-IN');
                 var tested = total['tested'].toLocaleString('en-IN');
                 var vaccinated = total['vaccinated'].toLocaleString('en-IN');
                 var active = total['confirmed'] - total['deceased'] - total['recovered'];
@@ -168,32 +165,41 @@ $(document).ready(function () {
                 //console.log(item, data[item]);
 
             });
-            // Appending the Total figures at the last
-
+            
+            /* Appending the Total figures at the last */
+            // Last 24 hours data
             var today_confirmed = data['TT']['delta']['confirmed'] == undefined ? 0 : data['TT']['delta']['confirmed'].toLocaleString('en-IN');
             var today_deceased = data['TT']['delta']['deceased'] == undefined ? 0 : data['TT']['delta']['deceased'].toLocaleString('en-IN');
             var today_recovered = data['TT']['delta']['recovered'] == undefined ? 0 : data['TT']['delta']['recovered'].toLocaleString('en-IN');
             var today_vaccinated = data['TT']['delta']['vaccinated'] == undefined ? 0 : data['TT']['delta']['vaccinated'].toLocaleString('en-IN');
             var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta']['tested'].toLocaleString('en-IN');
             var today_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
-
-            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + data['TT']['total']['confirmed'].toLocaleString('en-IN') + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + today_active.toLocaleString('en-IN') + '</td>' + '<td>' + data['TT']['total']['deceased'].toLocaleString('en-IN') + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + data['TT']['total']['recovered'].toLocaleString('en-IN') + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + data['TT']['total']['tested'].toLocaleString('en-IN') + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + data['TT']['total']['vaccinated'].toLocaleString('en-IN') + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+            
+            // Total Cases of India -TT
+            var TT_confirmed = data['TT']['total']['confirmed'].toLocaleString('en-IN');
+            var TT_deceased = data['TT']['total']['deceased'].toLocaleString('en-IN');
+            var TT_recovered = data['TT']['total']['recovered'].toLocaleString('en-IN');
+            var TT_tested = data['TT']['total']['tested'].toLocaleString('en-IN');
+            var TT_vaccinated = data['TT']['total']['vaccinated'].toLocaleString('en-IN');
+            var TT_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
+            
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + TT_confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + TT_active.toLocaleString('en-IN') + '</td>' + '<td>' + TT_deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + TT_recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + TT_tested + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + TT_vaccinated + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
             //console.log(data['TT']);
             /* Adding the Last 24 hours data */
             var prev_day = data['TT']['delta'];
             if (prev_day != undefined) {
-                $('.confirmed_24 > h3').text(confirmed);
+                $('.confirmed_24 > h3').text(TT_confirmed);
                 $('.confirmed_24 > small').text('(+' + prev_day['confirmed'].toLocaleString('en-IN') + ')');
-                $('.deceased_24 > h3').text(deceased);
+                $('.deceased_24 > h3').text(TT_deceased);
                 $('.deceased_24 > small').text('(+' + prev_day['deceased'].toLocaleString('en-IN') + ')');
-                $('.recovered_24 > h3').text(recovered);
+                $('.recovered_24 > h3').text(TT_recovered);
                 $('.recovered_24 > small').text('(+' + prev_day['recovered'].toLocaleString('en-IN') + ')');
             }
             else {
-                $('.confirmed_24 > h3').text(confirmed);
-                $('.deceased_24 > h3').text(deceased);
-                $('.recovered_24 > h3').text(recovered);
+                $('.confirmed_24 > h3').text(TT_confirmed);
+                $('.deceased_24 > h3').text(TT_deceased);
+                $('.recovered_24 > h3').text(TT_recovered);
             }
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);

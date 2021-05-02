@@ -123,9 +123,8 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
             // Last Updated date of State data
             var state_updated_date = data[state_id]['meta']['last_updated'];
-            x = state_updated_date.split('T');
-            $('.updated_date').text(x[0] + ', ' + x[1].split('+')[0] + ' (IST)');
-            console.log(data[state_id]);
+            $('.updated_date').text(moment(state_updated_date).format('MMMM Do YYYY, h:mm:ss a') + ' (IST)');
+            //console.log(data[state_id]);
 
 
             var district = data[state_id]['districts'];
@@ -144,7 +143,7 @@ $(document).ready(function () {
 
             /* Last 24 hours data */
             var prev_day = data[state_id]['delta'];
-            console.log(prev_day);
+            //console.log(prev_day);
             if (prev_day != undefined) {
                 var confirmed_24 = prev_day['confirmed'] == undefined ? 0 : prev_day['confirmed'].toLocaleString('en-IN');
                 var deceased_24 = prev_day['deceased'] == undefined ? 0 : prev_day['deceased'].toLocaleString('en-IN');
