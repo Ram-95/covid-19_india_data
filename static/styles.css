@@ -122,6 +122,12 @@ footer>* {
     border: 1px solid green;
 }
 
+.active_24 {
+    color: red;
+    background-color: rgb(243 202 202);
+    border: 1px solid red;
+}
+
 @media only screen and (max-width: 600px) {
     .container_data {
         display: flex;
