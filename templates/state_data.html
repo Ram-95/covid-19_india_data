@@ -41,20 +41,22 @@ COVID-19 India
     <div id='stateDiv'></div>
     <div id='dailyStateDiv'></div>
     <div id='districtDiv'></div>
-    <table class="table-bordered table state_main_table text-center mt-3" id="{{ state_id }}">
-        <thead>
-            <tr class="thead-dark">
-                <th>District Name</th>
-                <th>Confirmed</th>
-                <th>Active</th>
-                <th>Deceased</th>
-                <th>Recovered</th>
-                <th>Tested</th>
-                <th>Vaccinated</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div style="width: 100%; overflow-x: auto;">
+        <table class="table-bordered table state_main_table text-center mt-3" id="{{ state_id }}">
+            <thead>
+                <tr class="thead-dark">
+                    <th>District Name</th>
+                    <th>Confirmed</th>
+                    <th>Active</th>
+                    <th>Deceased</th>
+                    <th>Recovered</th>
+                    <th>Tested</th>
+                    <th>Vaccinated</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
