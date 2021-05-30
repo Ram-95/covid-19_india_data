@@ -40,10 +40,12 @@ td>small {
 .state_name {
     cursor: pointer;
     color: rgb(0, 47, 255) !important;
+
 }
 
 .state_name:hover {
     font-size: 1.025rem;
+    text-decoration: none;
 }
 
 .updated_date {
@@ -137,6 +139,10 @@ footer>* {
     margin: 2rem auto;
     padding: 0.5rem;
     border-radius: 0.7rem;
+}
+
+a {
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 600px) {
