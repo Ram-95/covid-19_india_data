@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
-Sitemap: https://covid19-india-stats.herokuapp.com/
+Sitemap: https://covid19-india-stats.herokuapp.com/sitemap.xml

@@ -10,6 +10,185 @@
   <lastmod>2021-05-30T08:15:22+00:00</lastmod>
   <priority>1.00</priority>
 </url>
-
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/AN</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/AP</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/AR</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/AS</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/BR</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/CH</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/CT</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/DL</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/DN</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/GA</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/GJ</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/HP</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/HR</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/JH</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/JK</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/KA</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/KL</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/LA</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/LD</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/MH</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/ML</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+<loc>https://covid19-india-stats.herokuapp.com/MN</loc>
+<lastmod>2021-05-30T08:15:22+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/MP</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/MZ</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/NL</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/OR</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/PB</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/PY</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/RJ</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/SK</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/TG</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/TN</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/TR</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/UP</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/UT</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19-india-stats.herokuapp.com/WB</loc>
+  <lastmod>2021-05-30T08:15:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>
