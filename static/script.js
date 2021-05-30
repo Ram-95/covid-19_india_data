@@ -140,7 +140,7 @@ $(document).ready(function () {
                 var recovered = total['recovered'].toLocaleString('en-IN');
                 var tested = total['tested'].toLocaleString('en-IN');
                 var vaccinated = total['vaccinated'].toLocaleString('en-IN');
-                var active = total['confirmed'] - total['deceased'] - total['recovered'];
+                var active = Math.abs(total['confirmed'] - total['deceased'] - total['recovered']);
 
                 //total_pie_chart(total['recovered'], total['deceased'], active);
 
@@ -173,7 +173,7 @@ $(document).ready(function () {
             var today_recovered = data['TT']['delta']['recovered'] == undefined ? 0 : data['TT']['delta']['recovered'].toLocaleString('en-IN');
             var today_vaccinated = data['TT']['delta']['vaccinated'] == undefined ? 0 : data['TT']['delta']['vaccinated'].toLocaleString('en-IN');
             var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta']['tested'].toLocaleString('en-IN');
-            var today_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
+            var today_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
             
             // Total Cases of India -TT
             var TT_confirmed = data['TT']['total']['confirmed'].toLocaleString('en-IN');
@@ -181,7 +181,7 @@ $(document).ready(function () {
             var TT_recovered = data['TT']['total']['recovered'].toLocaleString('en-IN');
             var TT_tested = data['TT']['total']['tested'].toLocaleString('en-IN');
             var TT_vaccinated = data['TT']['total']['vaccinated'].toLocaleString('en-IN');
-            var TT_active = data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other'];
+            var TT_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
             
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + TT_confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + TT_active.toLocaleString('en-IN') + '</td>' + '<td>' + TT_deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + TT_recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + TT_tested + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + TT_vaccinated + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
@@ -196,7 +196,7 @@ $(document).ready(function () {
                 $('.recovered_24 > h3').text(TT_recovered);
                 $('.recovered_24 > small').text('(+' + prev_day['recovered'].toLocaleString('en-IN') + ')');
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
-                $('.active_24 > small').text('(+' + (prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered']).toLocaleString('en-IN') + ')');
+                $('.active_24 > small').text('(+' + (Math.abs(prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered'])).toLocaleString('en-IN') + ')');
             }
             else {
                 $('.confirmed_24 > h3').text(TT_confirmed);
