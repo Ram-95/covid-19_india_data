@@ -130,7 +130,7 @@ $(document).ready(function () {
                 /* Used in plotting Bar graphs */
                 var total = data[item]['total'];
                 if (item != 'TT') {
-                    state_data.push([state_code[item], total['confirmed'], total['confirmed'] - total['deceased'] - total['recovered'], total['recovered']]);
+                    state_data.push([state_code[item], total['confirmed'], Math.abs(total['confirmed'] - total['deceased'] - total['recovered']), total['recovered']]);
                 }
 
 

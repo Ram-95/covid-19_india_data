@@ -173,7 +173,7 @@ $(document).ready(function () {
                 var dist_recovered = dist['total']['recovered'] == undefined ? 0 : dist['total']['recovered'].toLocaleString('en-IN');
                 var dist_tested = dist['total']['tested'] == undefined ? 0 : dist['total']['tested'].toLocaleString('en-IN');
                 var dist_vaccinated = dist['total']['vaccinated'] == undefined ? 0 : dist['total']['vaccinated'].toLocaleString('en-IN');
-                var dist_active = dist['total']['confirmed'] - dist['total']['recovered'] - dist['total']['deceased'];
+                var dist_active = Math.abs(dist['total']['confirmed'] - dist['total']['recovered'] - dist['total']['deceased']);
 
                 // Appending the current district data to the district_data array
                 district_data.push([
