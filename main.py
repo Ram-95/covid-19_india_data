@@ -1,5 +1,5 @@
-from flask import (Flask, escape, render_template, request, send_file,
-                   send_from_directory, url_for, abort)
+from flask import (Flask, render_template, request,
+                   send_from_directory, abort)
 
 app = Flask(__name__)
 
@@ -42,6 +42,13 @@ def show_graphs(state_code):
     if state_code not in state_code_dict:
         abort(404)
     return render_template('show_graph.html', state_id=state_code)
+
+
+
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 if __name__ == '__main__':
