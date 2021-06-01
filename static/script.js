@@ -196,7 +196,7 @@ $(document).ready(function () {
                 $('.recovered_24 > h3').text(TT_recovered);
                 $('.recovered_24 > small').text('(+' + prev_day['recovered'].toLocaleString('en-IN') + ')');
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
-                $('.active_24 > small').text('(+' + (Math.abs(prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered'])).toLocaleString('en-IN') + ')');
+                //$('.active_24 > small').text('(+' + (Math.abs(prev_day['confirmed'] - prev_day['deceased'] - prev_day['recovered'])).toLocaleString('en-IN') + ')');
             }
             else {
                 $('.confirmed_24 > h3').text(TT_confirmed);
