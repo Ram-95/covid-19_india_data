@@ -118,7 +118,6 @@ $(document).ready(function () {
 
 
     function fetch_data() {
-        //$('#main_table > tbody').empty();
         //console.log('Executed');
         $.getJSON(url, function (data) {
             var updated_date = data['TT']['meta']['last_updated'];

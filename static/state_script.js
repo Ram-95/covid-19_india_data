@@ -139,7 +139,7 @@ $(document).ready(function () {
             var state_tested = state['total']['tested'].toLocaleString('en-IN');
             var state_active = state['total']['confirmed'] - state['total']['deceased'] - state['total']['recovered'];
             var state_vaccinated = state['total']['vaccinated'].toLocaleString('en-IN');
-
+            
 
             /* Last 24 hours data */
             var prev_day = data[state_id]['delta'];
