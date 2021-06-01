@@ -92,7 +92,7 @@ $(document).ready(function () {
                 title: 'COVID-19 Data - ' + state_code[state] + ' (' + typeOfGraph + ')'
             };
 
-            Plotly.plot(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
+            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
 
         });
     }
@@ -276,7 +276,7 @@ $(document).ready(function () {
             barmode: 'group'
         };
 
-        Plotly.newPlot('districtDiv', data, layout, { displayModeBar: false });
+        Plotly.react('districtDiv', data, layout, { displayModeBar: false });
 
     }
 });
