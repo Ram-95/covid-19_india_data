@@ -8,6 +8,7 @@
 
 body {
     max-width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -40,7 +41,6 @@ td>small {
 .state_name {
     cursor: pointer;
     color: rgb(0, 47, 255) !important;
-
 }
 
 .state_name:hover {
@@ -73,7 +73,6 @@ footer>* {
     align-self: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    width: 34rem;
 }
 
 .link i {
