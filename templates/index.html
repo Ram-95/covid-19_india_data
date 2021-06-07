@@ -4,7 +4,7 @@ COVID-19 India
 {% endblock %}
 {% block head %}
 {{ super() }}
-<script async src="/static/script.min.js"></script>
+<script async src="/static/script.js"></script>
 {% endblock %}
 {% block content %}
 <div class="container content">
@@ -34,7 +34,16 @@ COVID-19 India
             <small></small>
         </div>
     </div>
-    <div class="vaccination_number"></div>
+    <div class="vaccination_number">
+        <span class="total_doses"></span>
+        <ul style="list-style-type: none;">
+            <li><small id="first_dose"></small></li>
+            <li><small id="second_dose"></small></li>
+        </ul>
+        
+        
+    </div>
+    
     <!--Plotly graph-->
     <div id="totalDiv"></div>
     <div id="dailyDiv"></div>

@@ -139,6 +139,7 @@ $(document).ready(function () {
                 var recovered = total['recovered'].toLocaleString('en-IN');
                 var tested = total['tested'].toLocaleString('en-IN');
                 //console.log(total);
+                var total_vaccinated = (total['vaccinated1'] + total['vaccinated2']).toLocaleString('en-IN');
                 var vaccinated_1 = total['vaccinated1'].toLocaleString('en-IN');
                 var vaccinated_2 = total['vaccinated2'].toLocaleString('en-IN');
                 var active = Math.abs(total['confirmed'] - total['deceased'] - total['recovered']);
@@ -159,7 +160,7 @@ $(document).ready(function () {
                     //console.log(item, data[item]['delta']);
                 }
                 if (item != 'TT') {
-                    var row = '<tr><td><a class="state_name" href="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '<td>' + active.toLocaleString('en-IN') + '</td>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + vaccinated_1 + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+                    var row = '<tr><td><a class="state_name" href="' + item + '">' + state_code[item] + ' (' + item + ')</a>' + '</td><td>' + confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small>' + '<td>' + active.toLocaleString('en-IN') + '</td>' + '</td>' + '<td>' + deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + tested + '</td><td>' + total_vaccinated + '<small class="vaccinated">(+' + today_vaccinated + ')</small>' + '</td></tr>';
                 }
 
                 $('.main_table').append(row);
@@ -177,6 +178,8 @@ $(document).ready(function () {
             var today_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
             
             // Total Cases of India -TT
+            console.log(data['TT']['meta']['population']);
+            var TT_total_vaccines = (data['TT']['total']['vaccinated1'] + data['TT']['total']['vaccinated2']).toLocaleString('en-IN');
             var TT_confirmed = data['TT']['total']['confirmed'].toLocaleString('en-IN');
             var TT_deceased = data['TT']['total']['deceased'].toLocaleString('en-IN');
             var TT_recovered = data['TT']['total']['recovered'].toLocaleString('en-IN');
@@ -185,7 +188,7 @@ $(document).ready(function () {
             var TT_vaccinated_2 = data['TT']['total']['vaccinated2'].toLocaleString('en-IN');
             var TT_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
             
-            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + TT_confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + TT_active.toLocaleString('en-IN') + '</td>' + '<td>' + TT_deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + TT_recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + TT_tested + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + TT_vaccinated_1 + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + TT_confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + TT_active.toLocaleString('en-IN') + '</td>' + '<td>' + TT_deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + TT_recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + TT_tested + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + TT_total_vaccines + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
             //console.log(data['TT']);
             /* Adding the Last 24 hours data */
@@ -207,7 +210,9 @@ $(document).ready(function () {
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
 
             }
-            $('.vaccination_number').text(TT_vaccinated_1 + ' vaccines administered.');
+            $('.total_doses').text(TT_total_vaccines + ' vaccines administered.');
+            $('#first_dose').text('First Dosage: ' + TT_vaccinated_1);
+            $('#second_dose').text('Second Dosage: ' + TT_vaccinated_2);
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
