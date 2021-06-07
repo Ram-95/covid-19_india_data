@@ -138,8 +138,12 @@ $(document).ready(function () {
             var state_recovered = state['total']['recovered'].toLocaleString('en-IN');
             var state_tested = state['total']['tested'].toLocaleString('en-IN');
             var state_active = state['total']['confirmed'] - state['total']['deceased'] - state['total']['recovered'];
-            var state_vaccinated = state['total']['vaccinated1'].toLocaleString('en-IN');
-            //console.log(state['total']);
+            var state_total_vaccinated = (state['total']['vaccinated1'] + state['total']['vaccinated2']).toLocaleString('en-IN');
+            var state_vaccinated1 = state['total']['vaccinated1'].toLocaleString('en-IN');
+            var state_vaccinated2 = state['total']['vaccinated2'].toLocaleString('en-IN');
+            var state_vaccinate1_percentage = Math.round((state['total']['vaccinated1']/state['meta']['population'])*100)
+            var state_vaccinate2_percentage = Math.round((state['total']['vaccinated2']/state['meta']['population'])*100)
+            //console.log(state_vaccinate1_percentage);
 
             /* Last 24 hours data */
             var prev_day = data[state_id]['delta'];
@@ -163,7 +167,9 @@ $(document).ready(function () {
                 $('.recovered_24 > h3').text(state_recovered);
                 $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
             }
-            $('.vaccination_number').text(state_vaccinated + ' vaccines administered');
+            $('.total_doses').text(state_total_vaccinated + ' vaccines administered');
+            $('#first_dose').text('First Dose: ' + state_vaccinated1 + ' (' + state_vaccinate1_percentage +'%)');
+            $('#second_dose').text('Second Dose: ' + state_vaccinated2 + ' (' + state_vaccinate2_percentage +'%)');
             /* Fetching the District data of the State. */
             $.each(district, function (item) {
                 var dist = district[item];
@@ -222,7 +228,7 @@ $(document).ready(function () {
                 var state_today_vaccinated = 0;
             }
 
-            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><strong>Total</strong></td><td>' + state_total + '<small class="confirmed">(+' + state_today_confirmed + ')</small>' + '</td><td>' + state_active.toLocaleString('en-IN') + '</td><td>' + state_deceased + '<small class="deceased">(+' + state_today_deceased + ')</small>' + '</td><td>' + state_recovered + '<small class="recovered">(+' + state_today_recovered + ')</small>' + '</td><td>' + state_tested + '<small class="tested">(+' + state_today_tested + ')</small>' + '</td><td>' + state_vaccinated + '<small class="vaccinated">(+' + state_today_vaccinated + ')</small>' + '</td></tr>';
+            var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><strong>Total</strong></td><td>' + state_total + '<small class="confirmed">(+' + state_today_confirmed + ')</small>' + '</td><td>' + state_active.toLocaleString('en-IN') + '</td><td>' + state_deceased + '<small class="deceased">(+' + state_today_deceased + ')</small>' + '</td><td>' + state_recovered + '<small class="recovered">(+' + state_today_recovered + ')</small>' + '</td><td>' + state_tested + '<small class="tested">(+' + state_today_tested + ')</small>' + '</td><td>' + state_total_vaccinated + '<small class="vaccinated">(+' + state_today_vaccinated + ')</small>' + '</td></tr>';
             $('.state_main_table').append(row);
         });
         plot_time_series_data(state_id, 'Cummulative', 'stateDiv');
