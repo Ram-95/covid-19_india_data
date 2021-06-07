@@ -137,12 +137,21 @@ footer>* {
     text-align: center;
     align-items: center;
     margin: 2rem auto;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border-radius: 0.7rem;
+}
+
+.vaccination_number>ul {
+    list-style-type: none;
+    margin-bottom: 0;
 }
 
 a {
     text-decoration: none;
+}
+
+#first_dose, #second_dose {
+    color: darkred;
 }
 
 @media only screen and (max-width: 600px) {
