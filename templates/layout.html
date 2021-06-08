@@ -16,21 +16,35 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/styles.min.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+
     {% endblock %}
 </head>
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="preload" style="position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 1);
+    transition: 1s 0.4s;">
+        <img src="/static/loading.gif" alt="Loading" style="margin: 40vh auto;
+        display: block;">
+    </div>
     {% block content %}
     {% endblock %}
     <footer>
         <div class="link">
-            <h6>Data Source: <a href="https://api.covid19india.org/" target="_blank" rel="noopener">COVID-19 INDIA</a></h6>
+            <h6>Data Source: <a href="https://api.covid19india.org/" target="_blank" rel="noopener">COVID-19 INDIA</a>
+            </h6>
             <a href="https://github.com/Ram-95/covid-19_india_data" title="Github Link" target="_blank">Github</a>
         </div>
     </footer>
