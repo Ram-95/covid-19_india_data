@@ -1,3 +1,7 @@
+$(window).on('load', function () {
+    $(".preload").fadeOut("fast");
+});
+
 $(document).ready(function () {
     var state_names = [];
     var total_confirmed = [];
@@ -87,7 +91,7 @@ $(document).ready(function () {
 
             var layout = {
                 grid: { rows: 2, columns: 2, pattern: 'independent' },
-                title: 'COVID-19 Data - ' + state_code[state] + ' (' + typeOfGraph + ')'
+                title: 'COVID-19 | India' + ' (' + typeOfGraph + ')'
             };
 
             Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
@@ -140,8 +144,8 @@ $(document).ready(function () {
                 var tested = total['tested'].toLocaleString('en-IN');
                 //console.log(total);
                 var total_vaccinated = (total['vaccinated1'] + total['vaccinated2']).toLocaleString('en-IN');
-                var vaccinated_1 = total['vaccinated1'].toLocaleString('en-IN');
-                var vaccinated_2 = total['vaccinated2'].toLocaleString('en-IN');
+                // var vaccinated_1 = total['vaccinated1'].toLocaleString('en-IN');
+                // var vaccinated_2 = total['vaccinated2'].toLocaleString('en-IN');
                 var active = Math.abs(total['confirmed'] - total['deceased'] - total['recovered']);
 
                 //total_pie_chart(total['recovered'], total['deceased'], active);

@@ -1,3 +1,6 @@
+$(window).on('load', function () {
+    $(".preload").fadeOut("fast");
+});
 $(document).ready(function () {
     var dist_active_bar = [];
     var dist_names_bar = [];
@@ -89,7 +92,7 @@ $(document).ready(function () {
 
             var layout = {
                 grid: { rows: 2, columns: 2, pattern: 'independent' },
-                title: 'COVID-19 Data - ' + state_code[state] + ' (' + typeOfGraph + ')'
+                title: state_code[state] + ' (' + typeOfGraph + ')'
             };
 
             Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
