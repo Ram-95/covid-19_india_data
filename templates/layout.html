@@ -28,16 +28,8 @@
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="preload" style="position: fixed;
-    z-index: 99999;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 1);
-    transition: 1s 0.4s;">
-        <img src="/static/loading.gif" alt="Loading" style="margin: 40vh auto;
-        display: block;">
+    <div id="preload">
+        <img src="/static/loading.gif" alt="Loading">
     </div>
     {% block content %}
     {% endblock %}
