@@ -1,6 +1,7 @@
-$(window).on('load', function () {
-    $("#preload").fadeOut("fast");
-});
+function stop_loading() {
+    $('#preload').fadeOut('fast');
+}
+
 $(document).ready(function () {
     var dist_active_bar = [];
     var dist_names_bar = [];
@@ -173,6 +174,7 @@ $(document).ready(function () {
             $('.total_doses').text(state_total_vaccinated + ' vaccines administered');
             $('#first_dose').text('First Dose: ' + state_vaccinated1 + ' (' + state_vaccinate1_percentage +'%)');
             $('#second_dose').text('Second Dose: ' + state_vaccinated2 + ' (' + state_vaccinate2_percentage +'%)');
+            stop_loading();
             /* Fetching the District data of the State. */
             $.each(district, function (item) {
                 var dist = district[item];

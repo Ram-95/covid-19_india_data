@@ -1,6 +1,13 @@
+function stop_loading() {
+    $('#preload').fadeOut('fast');
+}
+/*
 $(window).on('load', function () {
-    $("#preload").fadeOut("fast");
+    if (load_flag == 1) {
+        $("#preload").fadeOut("fast");
+    }
 });
+*/
 
 $(document).ready(function () {
     var state_names = [];
@@ -171,7 +178,7 @@ $(document).ready(function () {
                 //console.log(item, data[item]);
 
             });
-            
+
             /* Appending the Total figures at the last */
             // Last 24 hours data
             var today_confirmed = data['TT']['delta']['confirmed'] == undefined ? 0 : data['TT']['delta']['confirmed'].toLocaleString('en-IN');
@@ -180,7 +187,7 @@ $(document).ready(function () {
             var today_vaccinated = data['TT']['delta']['vaccinated'] == undefined ? 0 : data['TT']['delta']['vaccinated'].toLocaleString('en-IN');
             var today_tested = data['TT']['delta']['tested'] == undefined ? 0 : data['TT']['delta']['tested'].toLocaleString('en-IN');
             var today_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
-            
+
             // Total Cases of India -TT
             var TT_total_vaccines = (data['TT']['total']['vaccinated1'] + data['TT']['total']['vaccinated2']).toLocaleString('en-IN');
             var TT_confirmed = data['TT']['total']['confirmed'].toLocaleString('en-IN');
@@ -190,10 +197,10 @@ $(document).ready(function () {
             var TT_vaccinated_1 = data['TT']['total']['vaccinated1'].toLocaleString('en-IN');
             var TT_vaccinated_2 = data['TT']['total']['vaccinated2'].toLocaleString('en-IN');
             var TT_population = data['TT']['meta']['population'];
-            var TT_vaccine1_percentage = Math.round((data['TT']['total']['vaccinated1']/TT_population) * 100);
-            var TT_vaccine2_percentage = Math.round((data['TT']['total']['vaccinated2']/TT_population) * 100);
+            var TT_vaccine1_percentage = Math.round((data['TT']['total']['vaccinated1'] / TT_population) * 100);
+            var TT_vaccine2_percentage = Math.round((data['TT']['total']['vaccinated2'] / TT_population) * 100);
             var TT_active = Math.abs(data['TT']['total']['confirmed'] - data['TT']['total']['deceased'] - data['TT']['total']['recovered'] - data['TT']['total']['other']);
-            
+
             var row = '<tr style="background-color: lightyellow; font-weight: 700;"><td><a class="sticky-col first-col">' + state_code['TT'] + ' (' + 'TT' + ')</a>' + '</td><td>' + TT_confirmed + '<small class="confirmed">(+' + today_confirmed + ')</small></td><td>' + TT_active.toLocaleString('en-IN') + '</td>' + '<td>' + TT_deceased + '<small class="deceased">(+' + today_deceased + ')</small>' + '</td><td>' + TT_recovered + '<small class="recovered">(+' + today_recovered + ')</small>' + '</td><td>' + TT_tested + ' <small class="tested">(+' + today_tested + ')</small></td><td>' + TT_total_vaccines + '<small style="color: blue;">(+' + today_vaccinated + ')</small>' + '</td></tr>';
             $('.main_table').append(row);
             //console.log(data['TT']);
@@ -216,9 +223,13 @@ $(document).ready(function () {
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
 
             }
+            
             $('.total_doses').text(TT_total_vaccines + ' vaccines administered.');
             $('#first_dose').text('First Dose: ' + TT_vaccinated_1 + ' (' + TT_vaccine1_percentage + '%)');
             $('#second_dose').text('Second Dose: ' + TT_vaccinated_2 + ' (' + TT_vaccine2_percentage + '%)');
+            // Hide loading.gif when JS is completely loaded.
+            stop_loading();
+            
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
