@@ -96,7 +96,9 @@ $(document).ready(function () {
                 title: state_code[state] + ' (' + typeOfGraph + ')'
             };
 
-            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
+            var config = {responsive: true}
+
+            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, config, { displayModeBar: false });
 
         });
     }
@@ -287,7 +289,9 @@ $(document).ready(function () {
             barmode: 'group'
         };
 
-        Plotly.react('districtDiv', data, layout, { displayModeBar: false });
+        var config = {responsive: true}
+
+        Plotly.react('districtDiv', data, layout, config, { displayModeBar: false });
 
     }
 });

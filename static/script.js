@@ -101,7 +101,9 @@ $(document).ready(function () {
                 title: 'COVID-19 | India' + ' (' + typeOfGraph + ')'
             };
 
-            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, { displayModeBar: false });
+            var config = {responsive: true}
+
+            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, config, { displayModeBar: false });
 
         });
     }
@@ -299,7 +301,9 @@ $(document).ready(function () {
             barmode: 'group'
         };
 
-        Plotly.react('totalBarDiv', data, layout, { displayModeBar: false });
+        var config = {responsive: true}
+
+        Plotly.react('totalBarDiv', data, layout, config, { displayModeBar: false });
 
     }
 
