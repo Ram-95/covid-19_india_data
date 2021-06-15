@@ -101,9 +101,9 @@ $(document).ready(function () {
                 title: 'COVID-19 | India' + ' (' + typeOfGraph + ')'
             };
 
-            var config = {responsive: true}
+            var config = { responsive: true, displayModeBar: false }
 
-            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, config, { displayModeBar: false });
+            Plotly.react(plotlyGraphDiv, [trace1, trace2, trace3, trace4], layout, config);
 
         });
     }
@@ -225,13 +225,13 @@ $(document).ready(function () {
                 $('.active_24 > h3').text(TT_active.toLocaleString('en-IN'));
 
             }
-            
+
             $('.total_doses').text(TT_total_vaccines + ' vaccines administered.');
             $('#first_dose').text('First Dose: ' + TT_vaccinated_1 + ' (' + TT_vaccine1_percentage + '%)');
             $('#second_dose').text('Second Dose: ' + TT_vaccinated_2 + ' (' + TT_vaccine2_percentage + '%)');
             // Hide loading.gif when JS is completely loaded.
             stop_loading();
-            
+
             // Sort the data based on confirmed cases and plot the bar-graph
             sort_and_store(state_data, state_names, total_confirmed, total_active, total_recovered);
         });
@@ -301,9 +301,9 @@ $(document).ready(function () {
             barmode: 'group'
         };
 
-        var config = {responsive: true}
+        var config = { responsive: true, displayModeBar: false, }
 
-        Plotly.react('totalBarDiv', data, layout, config, { displayModeBar: false });
+        Plotly.react('totalBarDiv', data, layout, config);
 
     }
 
