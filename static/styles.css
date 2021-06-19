@@ -170,6 +170,15 @@ a {
     display: block;
 }
 
+/* Styles for Vaccination.html */
+input[type=text] {
+    border: 2px solid cornflowerblue;
+    font-size: 1.15rem;
+    padding: 3px;
+    outline: none;
+    border-radius: 6px;
+}
+
 @media only screen and (max-width: 600px) {
     .container_data {
         display: flex;
@@ -179,4 +188,5 @@ a {
         margin-bottom: 1rem;
         text-align: center;
     }
+    
 }
