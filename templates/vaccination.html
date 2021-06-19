@@ -20,22 +20,23 @@
 
 <body>
     <div class="container content">
-        <h3 id="heading" class="mb-4">Vaccination Centres</h3>
-        <a href="{{ url_for('homepage') }}">COVID-19 Cases</a>
+        <h3 id="heading">Vaccination Centres</h3>
+        <a href="{{ url_for('homepage') }}" class="nav-links">COVID-19 Cases</a>
+        <hr>
         <div style="width: 100%; overflow-x: auto;">
             <span style="font-size: 1.25rem;">
                 Enter PIN Code:</span>&nbsp;<input type="text" placeholder="PIN Code" id="pin_field" autofocus
                 maxlength="6">
             <button class="btn-success btn" id="pin_search">Search</button>
-            <table class="table-bordered table main_table text-center mt-3" id="vaccine_table">
+            <table class="table-bordered table main_table text-center mt-3" id="vaccine_table" style="overflow-x: auto;">
                 <thead>
                     <tr class="thead-dark">
-                        <th>Centre ID</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Vaccine</th>
                         <th>Address</th>
                         <th>District</th>
-                        <th>Fee Type</th>
+                        <th>Fee</th>
                     </tr>
                 </thead>
                 <tbody>
