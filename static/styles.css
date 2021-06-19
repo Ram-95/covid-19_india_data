@@ -170,6 +170,54 @@ a {
     display: block;
 }
 
+/* Styles for Vaccination.html */
+
+input[type=text] {
+    border: 2px solid cornflowerblue;
+    font-size: 1.15rem;
+    padding: 3px;
+    outline: none;
+    border-radius: 6px;
+}
+
+.nav-links {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.nav-links:hover {
+    font-size: 1.025rem;
+    text-decoration: none;
+}
+
+.CS {
+    color: green;
+}
+
+.CX {
+    color: #08adf1;
+}
+
+.vaccine_banner {
+    color: white;
+    border: 2px solid white;
+    background-color: rgb(5, 8, 240);
+    padding: 6px;
+    border-radius: 0.81rem;
+}
+
+.vaccine_banner:hover {
+    color: white;
+    font-size: 1.025rem;
+}
+
+@media only screen and (max-width: 360px) {
+    #pin_search {
+        margin-top: 0.6rem;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .container_data {
         display: flex;

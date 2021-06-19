@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Vaccination</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/vaccination_script.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container content">
+        <h3 id="heading">Vaccination Centres</h3>
+        <a href="{{ url_for('homepage') }}" class="nav-links">COVID-19 Cases</a>
+        <hr>
+        <div style="width: 100%; overflow-x: auto;">
+            <span style="font-size: 1.25rem;">
+                Enter PIN Code:</span>&nbsp;<input type="text" placeholder="PIN Code" id="pin_field" autofocus
+                maxlength="6">
+            <button class="btn-success btn" id="pin_search">Search</button>
+            <table class="table-bordered table main_table text-center mt-3" id="vaccine_table" style="overflow-x: auto;">
+                <thead>
+                    <tr class="thead-dark">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Vaccine</th>
+                        <th>Address</th>
+                        <th>District</th>
+                        <th>Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

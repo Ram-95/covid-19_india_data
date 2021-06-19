@@ -44,6 +44,10 @@ def show_graphs(state_code):
     return render_template('show_graph.html', state_id=state_code)
 
 
+@app.route('/vaccination_center')
+def vaccination_center_search():
+    return render_template('vaccination.html')
+
 
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
