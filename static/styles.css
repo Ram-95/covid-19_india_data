@@ -220,6 +220,9 @@ input[type=text] {
     #pin_search {
         margin-top: 0.6rem;
     }
+    #vaccine_table {
+        font-size: smaller;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -230,5 +233,8 @@ input[type=text] {
     .container_data div {
         margin-bottom: 1rem;
         text-align: center;
+    }
+    #vaccine_table {
+        font-size: smaller;
     }
 }
