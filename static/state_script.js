@@ -9,7 +9,11 @@ $(document).ready(function () {
     var dist_recovered_bar = [];
 
     const time_series_url = 'https://api.covid19india.org/v4/min/timeseries.min.json';
-    /* Format: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json */
+    /* 
+    Format:
+    For States: https://api.covid19india.org/v4/min/timeseries-{state_code}.min.json 
+    For India: https://api.covid19india.org/v4/min/timeseries.min.json
+    */
 
     const url = 'https://api.covid19india.org/v4/min/data.min.json'
     const state_code = {
