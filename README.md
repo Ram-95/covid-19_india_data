@@ -11,5 +11,8 @@ A Dashboard showing the spread of COVID-19 in India and it's States.
 ![State Statistics](https://raw.githubusercontent.com/Ram-95/covid-19_india_data/main/screenshots/State-1.JPG)
 ![State Statistics](https://raw.githubusercontent.com/Ram-95/covid-19_india_data/main/screenshots/State-2.JPG)
 
+### Vaccination Centres
+![Vaccine Centers](https://raw.githubusercontent.com/Ram-95/covid-19_india_data/main/screenshots/Vaccine_Center.JPG)
+
 ### Credits:
 - Data Source: https://api.covid19india.org/
