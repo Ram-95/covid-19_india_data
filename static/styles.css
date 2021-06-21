@@ -199,6 +199,10 @@ input[type=text] {
     color: #08adf1;
 }
 
+.SV {
+    color: rgb(16, 16, 231);
+}
+
 .vaccine_banner {
     color: white;
     border: 2px solid white;
