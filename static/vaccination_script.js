@@ -19,6 +19,7 @@ $(document).ready(function () {
                 let centre_name = temp['name'];
                 let address = temp['address'];
                 let district = temp['district_name'];
+                let time_slot = temp['from'].slice(0,-3) + ' - ' + temp['to'].slice(0,-3);
                 let cls_vaccine;
                 if (temp['vaccine'] == 'COVISHIELD') {
                     cls_vaccine = 'CS';
@@ -34,7 +35,7 @@ $(document).ready(function () {
                 let pincode = temp['pincode'];
                 let state = temp['state_name'];
 
-                var row = '<tr><td>' + centre_id + '</td><td>' + centre_name + '</td><td class="' + cls_vaccine + '">' + vaccine_name + '</td><td>' + address + '</td><td>' + district + '</td><td>' + fee_type + '</td></tr>';
+                var row = '<tr><td>' + centre_id + '</td><td>' + centre_name + '</td><td class="' + cls_vaccine + '">' + vaccine_name + '</td><td>'+ time_slot + '</td><td>' + address + '</td><td>' + district + '</td><td>' + fee_type + '</td></tr>';
                 $('#heading').text('Vaccination Centres - ' + pincode + " | " + state);
                 $('#vaccine_table').append(row);
             }
