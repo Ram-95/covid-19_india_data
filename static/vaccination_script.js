@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var today;
+
     async function getdata(pin_code, date) {
         const url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=" + pin_code + "&date=" + date;
         const response = await fetch(url);
@@ -6,7 +8,7 @@ $(document).ready(function () {
         //console.log(data['sessions'].length);
         $("#vaccine_table > tbody").empty();
         if (data['sessions'].length == 0) {
-            alert('Invalid PINCODE');
+            alert('No Data Available');
         }
         else {
             //$("#vaccine_table > tbody").empty();
@@ -18,18 +20,21 @@ $(document).ready(function () {
                 let address = temp['address'];
                 let district = temp['district_name'];
                 let cls_vaccine;
-                if(temp['vaccine'] == 'COVISHIELD') {
+                if (temp['vaccine'] == 'COVISHIELD') {
                     cls_vaccine = 'CS';
                 }
-                else {
+                else if (temp['vaccine'] == 'COVAXIN'){
                     cls_vaccine = 'CX';
+                }
+                else {
+                    cls_vaccine = 'SV';
                 }
                 let vaccine_name = temp['vaccine'];
                 let fee_type = temp['fee_type'];
                 let pincode = temp['pincode'];
                 let state = temp['state_name'];
 
-                var row = '<tr><td>' + centre_id + '</td><td>' + centre_name + '</td><td class="'+ cls_vaccine + '">' + vaccine_name + '</td><td>' + address + '</td><td>' + district + '</td><td>' + fee_type + '</td></tr>';
+                var row = '<tr><td>' + centre_id + '</td><td>' + centre_name + '</td><td class="' + cls_vaccine + '">' + vaccine_name + '</td><td>' + address + '</td><td>' + district + '</td><td>' + fee_type + '</td></tr>';
                 $('#heading').text('Vaccination Centres - ' + pincode + " | " + state);
                 $('#vaccine_table').append(row);
             }
@@ -46,9 +51,15 @@ $(document).ready(function () {
             alert('Not a Valid PIN Code.');
         }
         else {
-            let today = moment(new Date()).format('DD-MM-YYYY');
+            today = moment(new Date()).format('DD-MM-YYYY');
             getdata(pin_code, today);
         }
 
+    });
+
+    $("#pin_field").keypress(function (e) {
+        if (e.which == 13) {
+            $("#pin_search").click();
+        }
     });
 });
