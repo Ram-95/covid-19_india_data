@@ -216,6 +216,20 @@ input[type=text] {
     font-size: 1.025rem;
 }
 
+.avl_doses {
+    background-color: #efeded;
+    padding: 5px;
+    border-radius: 1.5rem;
+    margin-left: 0;
+    font-weight: 100;
+    color: brown;
+}
+
+.vaccine_name>hr {
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
 @media only screen and (max-width: 360px) {
     #pin_search {
         margin-top: 0.6rem;
