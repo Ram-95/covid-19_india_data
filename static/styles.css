@@ -230,6 +230,23 @@ input[type=text] {
     margin-bottom: 0.5rem;
 }
 
+.banner {
+    color: white;
+    border: 2px solid white;
+    background-color: rgb(5 115 240);
+    padding: 6px;
+    border-radius: 0.81rem;
+}
+
+.banner:hover {
+    color: white;
+    font-size: 1.025rem;
+}
+
+#vaccine_date {
+    color: red;
+}
+
 @media only screen and (max-width: 360px) {
     #pin_search {
         margin-top: 0.6rem;

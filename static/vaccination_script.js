@@ -47,6 +47,7 @@ $(document).ready(function () {
                 $('#heading').text('Vaccination Centres - ' + pincode + " | " + state);
                 $('#vaccine_table').append(row);
             }
+            
         }
     };
 
