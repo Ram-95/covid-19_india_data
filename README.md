@@ -16,3 +16,6 @@ A Dashboard showing the spread of COVID-19 in India and it's States.
 
 ### Credits:
 - Data Source: https://api.covid19india.org/
+
+### Live:
+- See Live at: https://covid19-india-stats.herokuapp.com/
