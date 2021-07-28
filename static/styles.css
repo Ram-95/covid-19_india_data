@@ -252,11 +252,6 @@ input[type=text] {
     visibility: hidden;
 }
 
-#preload_vaccine img {
-    height: 100px;
-    width: 100px;
-}
-
 #vaccine_table {
     visibility: hidden;
 }
