@@ -247,6 +247,20 @@ input[type=text] {
     color: red;
 }
 
+#preload_vaccine {
+    margin-top: 3rem;
+    visibility: hidden;
+}
+
+#preload_vaccine img {
+    height: 100px;
+    width: 100px;
+}
+
+#vaccine_table {
+    visibility: hidden;
+}
+
 @media only screen and (max-width: 360px) {
     #pin_search {
         margin-top: 0.6rem;
