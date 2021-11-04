@@ -9,13 +9,17 @@ $(document).ready(function () {
     var dist_recovered_bar = [];
 
     const time_series_url = 'https://data.covid19india.org/v4/min/timeseries.min.json';
+    
     /* 
     Format:
     For States: https://data.covid19india.org/v4/min/timeseries-{state_code}.min.json 
     For India: https://data.covid19india.org/v4/min/timeseries.min.json
+    // New End point
+    State Timeseries: 'https://api.covid19tracker.in/data/static/timeseries/CT.min.json'
     */
 
-    const url = 'https://data.covid19india.org/v4/min/data.min.json'
+    //const url = 'https://data.covid19india.org/v4/min/data.min.json'
+    const url = 'https://api.covid19tracker.in/data/static/data.min.json'
     const state_code = {
         'AN': 'Andaman and Nicobar', 'AP': 'Andhra Pradesh', 'AR': 'Arunachal Pradesh', 'AS': 'Assam', 'BR': 'Bihar', 'TT': 'Total',
         'CH': 'Chandigarh', 'CT': 'Chattisgarh', 'DL': 'Delhi', 'DN': 'Dadra and Nagar Haveli', 'GA': 'Goa', 'GJ': 'Gujarat',
@@ -27,7 +31,8 @@ $(document).ready(function () {
 
 
     function plot_time_series_data(state, typeOfGraph, plotlyGraphDiv) {
-        let urls = 'https://data.covid19india.org/v4/min/timeseries-' + state + '.min.json';
+        let urls= 'https://api.covid19tracker.in/data/static/timeseries/' + state +'.min.json'
+        //let urls = 'https://data.covid19india.org/v4/min/timeseries-' + state + '.min.json';
         let date_range = []
         let confirmed_cases = []
         let deceased_cases = []

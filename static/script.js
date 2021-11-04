@@ -14,20 +14,18 @@ $(document).ready(function () {
     var total_confirmed = [];
     var total_active = [];
     var total_recovered = [];
-    const time_series_url = 'https://data.covid19india.org/v4/min/timeseries.min.json';
+    //const time_series_url = 'https://data.covid19india.org/v4/min/timeseries.min.json';
+    const time_series_url = 'https://api.covid19tracker.in/data/static/timeseries.min.json';
     /* 
     Format:
     For States: https://data.covid19india.org/v4/min/timeseries-{state_code}.min.json 
     For India: https://data.covid19india.org/v4/min/timeseries.min.json
     */
     
-    const url = 'https://data.covid19india.org/v4/min/data.min.json'
-    /*fetch(url, {
-        method: 'GET',
-        mode: 'cors',
-    }).then(function(response){
-        console.log(response);
-    });*/
+    //const url = 'https://data.covid19india.org/v4/min/data.min.json'
+    const url = 'https://api.covid19tracker.in/data/static/data.min.json';
+    const date_url = 'https://api.covid19tracker.in/data/static/data/2021-11-03.min.json'
+    
     const state_code = {
         'AN': 'Andaman and Nicobar', 'AP': 'Andhra Pradesh', 'AR': 'Arunachal Pradesh', 'AS': 'Assam', 'BR': 'Bihar', 'TT': 'Total',
         'CH': 'Chandigarh', 'CT': 'Chattisgarh', 'DL': 'Delhi', 'DN': 'Dadra and Nagar Haveli', 'GA': 'Goa', 'GJ': 'Gujarat',
@@ -43,10 +41,10 @@ $(document).ready(function () {
     function plot_time_series_data(state, typeOfGraph, plotlyGraphDiv) {
         var urls;
         if (state == 'TT') {
-            urls = 'https://data.covid19india.org/v4/min/timeseries.min.json';
+            urls = 'https://api.covid19tracker.in/data/static/timeseries.min.json';
         }
         else {
-            urls = 'https://data.covid19india.org/v4/min/timeseries-' + state + '.min.json';
+            urls = 'https://api.covid19tracker.in/data/static/timeseries/' + state + '.min.json';
         }
         let date_range = []
         let confirmed_cases = []
