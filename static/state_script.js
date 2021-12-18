@@ -183,8 +183,15 @@ $(document).ready(function () {
                 $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
             }
             $('.total_doses').text(state_total_vaccinated + ' vaccines administered');
-            $('#first_dose').text('First Dose: ' + state_vaccinated1 + ' (' + state_vaccinate1_percentage +'%)');
-            $('#second_dose').text('Second Dose: ' + state_vaccinated2 + ' (' + state_vaccinate2_percentage +'%)');
+            $('#first_dose').text('One Dose: ' + state_vaccinated1 + ' (' + state_vaccinate1_percentage +'%)');
+            $('#first_dose_progress').attr({"aria-valuenow": state_vaccinate1_percentage});
+            $('#first_dose_progress').css("width", state_vaccinate1_percentage + '%');
+            $('#first_dose_progress').text(state_vaccinate1_percentage + '%' );
+
+            $('#second_dose').text('Two Doses: ' + state_vaccinated2 + ' (' + state_vaccinate2_percentage +'%)');
+            $('#second_dose_progress').attr({"aria-valuenow": state_vaccinate2_percentage});
+            $('#second_dose_progress').css("width", state_vaccinate2_percentage + '%');
+            $('#second_dose_progress').text(state_vaccinate2_percentage + '%' )
             stop_loading();
             /* Fetching the District data of the State. */
             $.each(district, function (item) {

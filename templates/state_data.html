@@ -11,7 +11,8 @@
     <h3 class="main_heading">COVID-19 Dashboard - {{ state }}</h3>
     <small>Data as on: <span class="updated_date"></span></small>
     <br>
-    <a href="{{ url_for('vaccination_center_search') }}" class="nav-links vaccine_banner"><i class="fas fa-syringe"></i> Search Vaccination Centers</a>
+    <a href="{{ url_for('vaccination_center_search') }}" class="nav-links vaccine_banner"><i class="fas fa-syringe"></i>
+        Search Vaccination Centers</a>
     <br>
     <a href="/" class="nav-links">India Cases</a>
     <hr>
@@ -41,8 +42,20 @@
     <div class="vaccination_number">
         <span class="total_doses"></span>
         <ul>
-            <li><small id="first_dose"></small></li>
-            <li><small id="second_dose"></small></li>
+            <li>
+                <i class="fas fa-syringe"></i>&nbsp;<small id="first_dose"></small>
+                <div class="progress">
+                    <div id="first_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-syringe"></i><i class="fas fa-syringe"></i>&nbsp;<small id="second_dose"></small>
+                <div class="progress">
+                    <div id="second_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </li>
         </ul>
 
     </div>

@@ -242,8 +242,15 @@ $(document).ready(function () {
             }
 
             $('.total_doses').text(TT_total_vaccines + ' vaccines administered.');
-            $('#first_dose').text('First Dose: ' + TT_vaccinated_1 + ' (' + TT_vaccine1_percentage + '%)');
-            $('#second_dose').text('Second Dose: ' + TT_vaccinated_2 + ' (' + TT_vaccine2_percentage + '%)');
+            $('#first_dose').text('One Dose: ' + TT_vaccinated_1 + ' (' + TT_vaccine1_percentage + '%)');
+            $('#first_dose_progress').attr({"aria-valuenow": TT_vaccine1_percentage});
+            $('#first_dose_progress').css("width", TT_vaccine1_percentage + '%');
+            $('#first_dose_progress').text(TT_vaccine1_percentage + '%' );
+            
+            $('#second_dose').text('Two Doses: ' + TT_vaccinated_2 + ' (' + TT_vaccine2_percentage + '%)');
+            $('#second_dose_progress').attr({"aria-valuenow": TT_vaccine2_percentage});
+            $('#second_dose_progress').css("width", TT_vaccine2_percentage + '%');
+            $('#second_dose_progress').text(TT_vaccine2_percentage + '%' );
             // Hide loading.gif when JS is completely loaded.
             stop_loading();
 

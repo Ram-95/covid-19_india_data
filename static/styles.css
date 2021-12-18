@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Della+Respira&family=Kanit&family=Prompt&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -132,18 +133,27 @@ footer>* {
 
 .vaccination_number {
     color: blue;
-    background-color: turquoise;
+    background-color: #b3f5ee;
     width: fit-content;
     text-align: center;
     align-items: center;
     margin: 2rem auto;
     padding: 0.6rem;
     border-radius: 0.7rem;
+    border: 1px solid turquoise;
 }
 
 .vaccination_number>ul {
     list-style-type: none;
     margin-bottom: 0;
+}
+
+.vaccination_number i {
+    color: maroon;
+}
+
+#first_dose_progress, #second_dose_progress {
+    background-color: maroon;
 }
 
 a {
@@ -260,6 +270,7 @@ input[type=text] {
     #pin_search {
         margin-top: 0.6rem;
     }
+
     #vaccine_table {
         font-size: smaller;
     }
@@ -270,10 +281,12 @@ input[type=text] {
         display: flex;
         flex-direction: column;
     }
+
     .container_data div {
         margin-bottom: 1rem;
         text-align: center;
     }
+
     #vaccine_table {
         font-size: smaller;
     }
