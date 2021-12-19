@@ -37,24 +37,31 @@ India
             <small></small>
         </div>
     </div>
-    <div class="vaccination_number">
-        <span class="total_doses"></span>
-        <ul>
-            <li>
-                <i class="fas fa-syringe"></i>&nbsp;<small id="first_dose"></small>
-                <div class="progress">
-                    <div id="first_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </li>
-            <li>
-                <i class="fas fa-syringe"></i><i class="fas fa-syringe"></i>&nbsp;<small id="second_dose"></small>
-                <div class="progress">
-                    <div id="second_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </li>
-        </ul>
+    <div class="vaccination_container">
+        <h5 class="mt-2">Vaccination Information</h5>
+        <div class="vaccination_number">
+            <p><span class="total_doses"></span> vaccines administered.</p>
+            <ul class="vaccine_list">
+                <li>
+                    <i class="fas fa-syringe"></i>&nbsp;<small>One Dose: <span id="first_dose_count"
+                            class="vaccine_values"></span></small>
+                    <div class="progress">
+                        <div id="first_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-syringe"></i><i class="fas fa-syringe"></i>&nbsp;<small>Two Doses:
+                        <span id="second_dose_count" class="vaccine_values"></small>
+                    <div class="progress">
+                        <div id="second_dose_progress" class="progress-bar" role="progressbar" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                </li>
+            </ul>
 
 
+        </div>
     </div>
 
     <!--Plotly graph-->

@@ -241,13 +241,18 @@ $(document).ready(function () {
 
             }
 
-            $('.total_doses').text(TT_total_vaccines + ' vaccines administered.');
-            $('#first_dose').text('One Dose: ' + TT_vaccinated_1 + ' (' + TT_vaccine1_percentage + '%)');
+            $('.total_doses').text(TT_total_vaccines);
+
+            // Populating the first_dose statistics
+            //$('#first_dose').text('One Dose: ' + TT_vaccinated_1);
+            $('#first_dose_count').text(TT_vaccinated_1);
             $('#first_dose_progress').attr({"aria-valuenow": TT_vaccine1_percentage});
             $('#first_dose_progress').css("width", TT_vaccine1_percentage + '%');
             $('#first_dose_progress').text(TT_vaccine1_percentage + '%' );
             
-            $('#second_dose').text('Two Doses: ' + TT_vaccinated_2 + ' (' + TT_vaccine2_percentage + '%)');
+            // Populating the second_dose statistics
+            //$('#second_dose').text('Two Doses: ' + TT_vaccinated_2);
+            $('#second_dose_count').text(TT_vaccinated_2);
             $('#second_dose_progress').attr({"aria-valuenow": TT_vaccine2_percentage});
             $('#second_dose_progress').css("width", TT_vaccine2_percentage + '%');
             $('#second_dose_progress').text(TT_vaccine2_percentage + '%' );

@@ -133,35 +133,68 @@ footer>* {
 
 .vaccination_number {
     color: blue;
-    background-color: #b3f5ee;
-    width: fit-content;
+    /*background-color: #f9f4c4;*/
+    max-width: 33rem;
     text-align: center;
     align-items: center;
-    margin: 2rem auto;
-    padding: 0.6rem;
+    margin: 1rem auto 2rem;
+    padding: 1rem;
     border-radius: 0.7rem;
-    border: 1px solid turquoise;
+    border: 1px solid yellowgreen;
 }
 
 .vaccination_number>ul {
     list-style-type: none;
     margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+li:not(:last-of-type) {
+    margin-bottom: 1rem;
+}
+
+.vaccine_values {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    color: royalblue;
+}
+
+.vaccination_container {
+    margin-top: 2rem;
 }
 
 .vaccination_number i {
     color: maroon;
 }
 
-#first_dose_progress, #second_dose_progress {
-    background-color: maroon;
+.progress {
+    margin: 0.25rem 0;
+}
+
+.total_doses {
+    font-size: 1.6rem;
+    color: midnightblue;
+    font-family: fantasy;
+}
+
+
+
+#first_dose_progress {
+    background-color: yellowgreen;
+}
+
+#second_dose_progress {
+    background-color: #64a303;
 }
 
 a {
     text-decoration: none;
 }
 
-#first_dose, #second_dose {
+.vaccine_list small {
     color: darkred;
+    font-size: 1rem;
 }
 
 #preload {
@@ -274,6 +307,10 @@ input[type=text] {
     #vaccine_table {
         font-size: smaller;
     }
+
+    .total_doses {
+        font-size: 1.25rem;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -289,5 +326,9 @@ input[type=text] {
 
     #vaccine_table {
         font-size: smaller;
+    }
+
+    .total_doses {
+        font-size: 1.25rem;
     }
 }

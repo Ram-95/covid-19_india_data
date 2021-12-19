@@ -182,13 +182,17 @@ $(document).ready(function () {
                 $('.recovered_24 > h3').text(state_recovered);
                 $('.active_24 > h3').text(state_active.toLocaleString('en-IN'));
             }
-            $('.total_doses').text(state_total_vaccinated + ' vaccines administered');
-            $('#first_dose').text('One Dose: ' + state_vaccinated1 + ' (' + state_vaccinate1_percentage +'%)');
+            $('.total_doses').text(state_total_vaccinated);
+            // Populating first dose data
+            //$('#first_dose').text('One Dose: ' + state_vaccinated1);
+            $('#first_dose_count').text(state_vaccinated1);
             $('#first_dose_progress').attr({"aria-valuenow": state_vaccinate1_percentage});
             $('#first_dose_progress').css("width", state_vaccinate1_percentage + '%');
             $('#first_dose_progress').text(state_vaccinate1_percentage + '%' );
-
-            $('#second_dose').text('Two Doses: ' + state_vaccinated2 + ' (' + state_vaccinate2_percentage +'%)');
+            
+            // Populating second dose data
+            //$('#second_dose').text('Two Doses: ' + state_vaccinated2);
+            $('#second_dose_count').text(state_vaccinated2);
             $('#second_dose_progress').attr({"aria-valuenow": state_vaccinate2_percentage});
             $('#second_dose_progress').css("width", state_vaccinate2_percentage + '%');
             $('#second_dose_progress').text(state_vaccinate2_percentage + '%' )
